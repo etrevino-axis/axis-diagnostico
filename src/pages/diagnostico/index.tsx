@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { StepScreen } from "@/components/wizard/step-screen";
 import { DiagnosticoToolbar } from "./components/diagnostico-toolbar";
@@ -16,18 +16,23 @@ declare global {
 }
 
 const STEP_COUNT = QUESTIONS.length;
+// Pausa breve para que se vea la selección marcada antes de saltar al
+// siguiente paso — suficiente para dar feedback, poco para sentirse lento.
+const AUTO_ADVANCE_DELAY_MS = 320;
 
 /**
- * Diagnóstico Financiero (`/`) — herramienta auto-servible de 7 preguntas
- * que califica la salud financiera de una empresa y filtra al visitante
- * ANTES de pedirle una llamada. El lead se captura después del quiz
- * (fricción baja, ya invirtió tiempo) y el CTA final manda a Calendly.
+ * Diagnóstico Financiero (`/`) — herramienta auto-servible que mide 4
+ * dimensiones de salud financiera y filtra al visitante ANTES de pedirle
+ * una llamada. Un solo tap en la respuesta avanza el paso — sin botón
+ * "Continuar" duplicado. El lead se captura después del quiz (fricción
+ * baja, ya invirtió tiempo) y el CTA final manda a Calendly.
  */
 export default function Diagnostico() {
   const [view, setView] = useState<View>("quiz");
   const [activeStep, setActiveStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [lead, setLead] = useState<LeadData | null>(null);
+  const advanceTimeout = useRef<ReturnType<typeof setTimeout>>();
 
   // Evento de "inicio" — útil para medir tasa de abandono del funnel en GA4.
   useEffect(() => {
@@ -35,19 +40,12 @@ export default function Diagnostico() {
     window.dataLayer.push({ event: "diagnostico_iniciado" });
   }, []);
 
+  useEffect(() => () => clearTimeout(advanceTimeout.current), []);
+
   const question = QUESTIONS[activeStep];
   const isLast = activeStep === STEP_COUNT - 1;
-  const hasAnswer = Boolean(answers[question?.id]);
 
-  const handleSelect = useCallback(
-    (optionId: string) => {
-      setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
-    },
-    [question],
-  );
-
-  const handleContinue = useCallback(() => {
-    if (!hasAnswer) return;
+  const goNext = useCallback(() => {
     if (!isLast) {
       setActiveStep((i) => i + 1);
     } else {
@@ -55,9 +53,19 @@ export default function Diagnostico() {
       window.dataLayer.push({ event: "diagnostico_completado" });
       setView("lead");
     }
-  }, [hasAnswer, isLast]);
+  }, [isLast]);
+
+  const handleSelect = useCallback(
+    (optionId: string) => {
+      setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
+      clearTimeout(advanceTimeout.current);
+      advanceTimeout.current = setTimeout(goNext, AUTO_ADVANCE_DELAY_MS);
+    },
+    [question, goNext],
+  );
 
   const handleBack = useCallback(() => {
+    clearTimeout(advanceTimeout.current);
     setActiveStep((i) => Math.max(0, i - 1));
   }, []);
 
@@ -67,6 +75,7 @@ export default function Diagnostico() {
   }, []);
 
   const handleRestart = useCallback(() => {
+    clearTimeout(advanceTimeout.current);
     setAnswers({});
     setLead(null);
     setActiveStep(0);
@@ -81,8 +90,8 @@ export default function Diagnostico() {
         ? 95
         : 100;
 
-  const { percent } = computeScore(answers);
-  const tier = getTier(percent);
+  const score = computeScore(answers);
+  const tier = getTier(score.percent);
 
   return (
     <div className="calc-canvas min-h-screen">
@@ -98,8 +107,9 @@ export default function Diagnostico() {
             question={question.question}
             helper={question.helper}
             isLast={isLast}
+            hideContinue
             onBack={activeStep > 0 ? handleBack : undefined}
-            onContinue={handleContinue}
+            onContinue={goNext}
           >
             <div className="space-y-3">
               {question.options.map((option) => (
@@ -117,7 +127,7 @@ export default function Diagnostico() {
         {view === "lead" && <LeadForm onSubmit={handleLeadSubmit} />}
 
         {view === "results" && lead && (
-          <DiagnosticoResult tier={tier} percent={percent} lead={lead} onRestart={handleRestart} />
+          <DiagnosticoResult tier={tier} score={score} answers={answers} lead={lead} onRestart={handleRestart} />
         )}
       </main>
 

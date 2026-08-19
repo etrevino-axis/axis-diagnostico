@@ -12,6 +12,8 @@ interface StepScreenProps {
   isLast?: boolean;
   /** Disables the Continue button (e.g. no answer selected yet). Defaults to enabled. */
   canContinue?: boolean;
+  /** Hides the Continue button entirely — use when selecting an option auto-advances. */
+  hideContinue?: boolean;
   onBack?: () => void;
   onContinue: () => void;
   onSkip?: () => void;
@@ -43,6 +45,7 @@ export function StepScreen({
   optional = false,
   isLast = false,
   canContinue = true,
+  hideContinue = false,
   onBack,
   onContinue,
   onSkip,
@@ -101,13 +104,15 @@ export function StepScreen({
             Back
           </Button>
         )}
-        <Button
-          type="submit"
-          disabled={!canContinue}
-          className="h-[52px] rounded-full bg-white px-8 text-base font-semibold text-primary shadow-lg transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] hover:bg-white active:scale-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
-        >
-          {isLast ? "Ver mi resultado" : "Continuar"}
-        </Button>
+        {!hideContinue && (
+          <Button
+            type="submit"
+            disabled={!canContinue}
+            className="h-[52px] rounded-full bg-white px-8 text-base font-semibold text-primary shadow-lg transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] hover:bg-white active:scale-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
+          >
+            {isLast ? "Ver mi resultado" : "Continuar"}
+          </Button>
+        )}
         {optional && onSkip && (
           <Button
             type="button"
