@@ -62,7 +62,7 @@ export function DiagnosticoResult({ tier, score, answers, lead, onRestart }: Dia
     >
       {/* --- Cabecera: sello + veredicto general --- */}
       <div
-        className="rounded-[20px] p-8 text-center shadow-[0_24px_60px_-28px_rgba(24,12,64,0.45)] sm:p-10"
+        className="rounded-[20px] p-8 text-center shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-10"
         style={{ backgroundColor: "var(--color-card)" }}
       >
         <p className="type-small font-semibold uppercase tracking-[0.12em] text-[var(--color-muted-foreground)]">
@@ -82,7 +82,7 @@ export function DiagnosticoResult({ tier, score, answers, lead, onRestart }: Dia
 
       {/* --- Scorecard por dimensión --- */}
       <div
-        className="mt-4 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(24,12,64,0.45)] sm:p-8"
+        className="mt-4 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
         style={{ backgroundColor: "var(--color-card)" }}
       >
         <p className="type-small font-semibold uppercase tracking-[0.12em] text-[var(--color-muted-foreground)]">
@@ -97,7 +97,7 @@ export function DiagnosticoResult({ tier, score, answers, lead, onRestart }: Dia
                   {dimension.label}
                 </span>
                 <span
-                  className="font-mono text-xs font-semibold uppercase tracking-wide"
+                  className="font-body text-xs font-semibold uppercase tracking-wide"
                   style={{ color: getDimensionTierColor(points) }}
                 >
                   {getDimensionTierLabel(points)}
@@ -121,7 +121,7 @@ export function DiagnosticoResult({ tier, score, answers, lead, onRestart }: Dia
 
       {/* --- Punto más urgente: el insight de autoridad --- */}
       <div
-        className="mt-4 rounded-[20px] border-l-4 p-7 shadow-[0_24px_60px_-28px_rgba(24,12,64,0.45)] sm:p-8"
+        className="mt-4 rounded-[20px] border-l-4 p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
         style={{
           backgroundColor: "var(--color-card)",
           borderColor: getDimensionTierColor(score.weakest.points),
@@ -139,10 +139,10 @@ export function DiagnosticoResult({ tier, score, answers, lead, onRestart }: Dia
       {/* --- Lo que ya funciona bien (si aplica) --- */}
       {strongestInsight && (
         <div
-          className="mt-4 rounded-[20px] border-l-4 p-7 shadow-[0_24px_60px_-28px_rgba(24,12,64,0.45)] sm:p-8"
-          style={{ backgroundColor: "var(--color-card)", borderColor: "#4E9E6D" }}
+          className="mt-4 rounded-[20px] border-l-4 p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.35)] sm:p-8"
+          style={{ backgroundColor: "var(--color-card)", borderColor: "#F6C967" }}
         >
-          <p className="type-small font-semibold uppercase tracking-[0.12em] text-[#4E9E6D]">
+          <p className="type-small font-semibold uppercase tracking-[0.12em] text-[#B8892E]">
             Lo que ya tienes bien: {score.strongest.dimension.label}
           </p>
           <p className="type-body-lg mt-3 text-[var(--color-card-foreground)]">{strongestInsight}</p>

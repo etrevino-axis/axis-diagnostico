@@ -1,29 +1,29 @@
 import { motion } from "motion/react";
 import type { TierId } from "@/lib/diagnostico";
-import { cn } from "@/lib/utils";
 
-const STAMP_COLOR: Record<TierId, string> = {
-  riesgo: "border-[#E8664D] text-[#E8664D]",
-  estable: "border-[#D4A24E] text-[#D4A24E]",
-  optimizado: "border-[#4E9E6D] text-[#4E9E6D]",
+// Escala de severidad dentro del propio sistema de marca — sin introducir
+// rojo/verde genéricos, tal como indica el UI Kit ("no colores adicionales
+// sin función clara"). Ink = más serio, Navy = institucional/estable,
+// Dorado = logro/óptimo.
+const STAMP_STYLE: Record<TierId, { border: string; text: string; bg: string }> = {
+  riesgo: { border: "#111111", text: "#111111", bg: "transparent" },
+  estable: { border: "#0C2156", text: "#0C2156", bg: "transparent" },
+  optimizado: { border: "#F6C967", text: "#111111", bg: "#F6C967" },
 };
 
 /**
- * El momento firma del diagnóstico: un "sello" estilo auditoría, como el
- * que estampa un revisor sobre un documento — apropiado para el mundo
- * contable/fiscal, y memorable sin depender de gráficas genéricas.
+ * El "sello" de veredicto — el momento firma del diagnóstico, apropiado
+ * para el mundo contable/fiscal sin salirse de la paleta institucional.
  */
 export function ResultStamp({ tierId, label }: { tierId: TierId; label: string }) {
+  const style = STAMP_STYLE[tierId];
   return (
     <motion.div
       initial={{ opacity: 0, scale: 1.4, rotate: -14 }}
-      animate={{ opacity: 1, scale: 1, rotate: -6 }}
+      animate={{ opacity: 1, scale: 1, rotate: -4 }}
       transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-      className={cn(
-        "inline-flex select-none items-center justify-center rounded-lg border-[3px] px-5 py-2.5 font-mono text-sm font-bold uppercase tracking-[0.14em] sm:text-base",
-        STAMP_COLOR[tierId],
-      )}
-      style={{ boxShadow: "0 0 0 1px currentColor inset" }}
+      className="inline-flex select-none items-center justify-center rounded-lg border-[3px] px-5 py-2.5 font-heading text-sm font-semibold uppercase tracking-[0.1em] sm:text-base"
+      style={{ borderColor: style.border, color: style.text, backgroundColor: style.bg }}
     >
       {label}
     </motion.div>

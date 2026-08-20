@@ -1,53 +1,59 @@
 /* StylePack — Axis Consultores / Diagnóstico Financiero
  *
- * Paleta "ledger": navy profundo de fondo (confianza, seriedad contable),
- * card color crema-papel (evoca un estado de cuenta impreso), ámbar como
- * acento de valor/CTA — nunca genérico terracota ni azul de "compra de casa".
- * Plus Jakarta Sans para encabezados; IBM Plex Mono para cifras/contadores
- * de paso — el guiño tipográfico a un documento financiero.
+ * Implementación 1:1 del "CMO Marketing UI Kit" de Axis:
+ *   Navy institucional  #0C2156 → confianza/autoridad, fondos de alto impacto
+ *   Dorado de acción    #F6C967 → único acento de conversión (CTA, énfasis)
+ *   Ink editorial       #111111 → titulares y datos sobre fondo claro
+ *   Gris de soporte      #6B6B66 → texto secundario, descripciones
+ *   Canvas suave         #F7F7F5 → fondos de transición/sección
+ *   Blanco               #FFFFFF → superficie de tarjetas y formularios
+ *
+ * Tipografía: Erode (serif editorial) para titulares/cifras — sustituida por
+ * Fraunces, la alternativa libre en Google Fonts más cercana en carácter,
+ * ya que Erode es de licencia comercial (Fenotype). Si el equipo cuenta con
+ * la licencia de Erode, basta con swap del @font-face abajo.
+ * Inter para navegación, botones, formularios y texto de apoyo.
  * Imported AFTER index.css — these values override the neutral defaults.
  */
 
 :root {
-  --font-heading: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-  --font-heading-weight: 700;
+  --font-heading: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading-weight: 600;
   --font-body-weight: 400;
 
-  /* Radius */
-  --radius: 1.1rem;
+  /* Radius — cápsula redondeada en CTAs, tarjetas sobrias sin exceso */
+  --radius: 1rem;
 
-  /* Colors */
-  /* Card = cálido papel-crema, no blanco puro, para el look "estado de cuenta". */
-  --color-background: oklch(0.965 0.008 85);
-  --color-foreground: oklch(0.2 0.02 260);
-  --color-card: oklch(0.98 0.012 85);
-  --color-card-foreground: oklch(0.2 0.02 260);
-  --color-popover: oklch(0.98 0.012 85);
-  --color-popover-foreground: oklch(0.2 0.02 260);
-  /* Primary — ámbar de "cifra destacada" (#D4A24E family). Único acento cálido. */
-  --color-primary: oklch(0.72 0.135 75);
-  --color-primary-foreground: oklch(0.18 0.03 75);
-  --color-secondary: oklch(0.94 0.02 85);
-  --color-secondary-foreground: oklch(0.3 0.03 85);
-  --color-muted: oklch(0.93 0.015 85);
-  --color-muted-foreground: oklch(0.46 0.025 260);
-  --color-accent: oklch(0.94 0.03 75);
-  --color-accent-foreground: oklch(0.3 0.05 75);
-  --color-destructive: oklch(0.6 0.19 25);
-  --color-destructive-foreground: oklch(0.975 0 0);
-  --color-border: oklch(0.2 0 0 / 12%);
-  --color-input: oklch(0.2 0 0 / 15%);
-  --color-ring: oklch(0.72 0.135 75);
-  --color-sidebar: oklch(0.96 0 0);
-  --color-sidebar-foreground: oklch(0.2 0 0);
-  --color-sidebar-primary: oklch(0.72 0.135 75);
-  --color-sidebar-primary-foreground: oklch(0.18 0.03 75);
-  --color-sidebar-accent: oklch(0.935 0.04 260);
-  --color-sidebar-accent-foreground: oklch(0.2 0 0);
-  --color-sidebar-border: oklch(0.2 0 0 / 15%);
-  --color-sidebar-ring: oklch(0.2 0 0);
+  /* Colors — 1:1 con el UI Kit, sin colores adicionales fuera del sistema */
+  --color-background: #0c2156; /* Navy institucional: fondo de alto impacto de la app */
+  --color-foreground: #ffffff;
+  --color-card: #ffffff; /* Blanco: superficie de tarjetas y formularios */
+  --color-card-foreground: #111111; /* Ink editorial */
+  --color-popover: #ffffff;
+  --color-popover-foreground: #111111;
+  /* Primary — Dorado de acción. Reservado para CTA y énfasis, nunca decorativo. */
+  --color-primary: #f6c967;
+  --color-primary-foreground: #111111; /* "Texto oscuro" sobre dorado, como especifica el kit */
+  --color-secondary: #f7f7f5; /* Canvas suave */
+  --color-secondary-foreground: #111111;
+  --color-muted: #f7f7f5;
+  --color-muted-foreground: #6b6b66; /* Gris de soporte */
+  --color-accent: #f6c967;
+  --color-accent-foreground: #111111;
+  --color-destructive: #0c2156;
+  --color-destructive-foreground: #ffffff;
+  --color-border: rgba(17, 17, 17, 0.12);
+  --color-input: rgba(17, 17, 17, 0.15);
+  --color-ring: #f6c967;
+  --color-sidebar: #f7f7f5;
+  --color-sidebar-foreground: #111111;
+  --color-sidebar-primary: #0c2156;
+  --color-sidebar-primary-foreground: #ffffff;
+  --color-sidebar-accent: #f6c967;
+  --color-sidebar-accent-foreground: #111111;
+  --color-sidebar-border: rgba(17, 17, 17, 0.12);
+  --color-sidebar-ring: #0c2156;
 }
 
 body {
@@ -67,16 +73,9 @@ h1, h2, h3, h4, h5, h6 {
  * Layered gradient canvas, real card elevation, gradient CTA, accent moments.
  * ------------------------------------------------------------------------- */
 .calc-canvas {
-  /* Navy profundo con un leve halo ámbar arriba — evoca la portada de un
-     estado financiero bajo lámpara de escritorio, no un cielo de venta de casas. */
-  background-image:
-    radial-gradient(1200px 520px at 50% -8%, rgba(212, 162, 78, 0.16), transparent 60%),
-    linear-gradient(180deg, #0f1b3d 0%, #16213e 55%, #101a33 100%);
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: #0f1b3d;
-  background-attachment: fixed;
+  /* Navy institucional sólido — el kit lo reserva exactamente para este uso:
+     "fondos de alto impacto" en piezas de captación. Sobriedad > efectos. */
+  background-color: #0c2156;
 }
 /* On-canvas text that sits directly on the saturated gradient. */
 .on-canvas { color: #ffffff; }
@@ -133,7 +132,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ---------------------------------------------------------------------------
  * Design tokens — type scale, easing, and form fields for the flow.
- * Display = Plus Jakarta Sans. Tight negative tracking + tight leading.
+ * Display = Fraunces (serif editorial). Tight negative tracking, editorial leading.
  * Spacing rhythm (px): 8 · 16 · 24 · 32 · 40 · 48 · 64.
  * ------------------------------------------------------------------------- */
 :root {
@@ -159,27 +158,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .type-hsuper {
+  font-family: var(--font-heading);
   font-size: clamp(56px, 7vw, 112px);
   line-height: 0.9;
-  letter-spacing: -0.03em;
-  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-weight: 600;
 }
 .type-h1 {
-  font-size: clamp(44px, 5vw, 72px);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
   font-weight: 600;
 }
 .type-h2 {
-  font-size: clamp(30px, 4vw, 52px);
-  line-height: 1.03;
-  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
   font-weight: 600;
 }
 .type-h3 {
+  font-family: var(--font-heading);
   font-size: clamp(22px, 2.4vw, 30px);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
   font-weight: 600;
 }
 .type-body-lg {

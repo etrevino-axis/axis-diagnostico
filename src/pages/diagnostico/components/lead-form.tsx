@@ -43,7 +43,7 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
       onSubmit={handleSubmit}
       className="mx-auto flex min-h-[calc(100vh-9rem)] max-w-xl flex-col justify-center py-6"
     >
-      <span className="type-small font-semibold uppercase tracking-[0.12em] text-white/65">
+      <span className="type-small font-semibold uppercase tracking-[0.14em] text-[#F6C967]">
         Último paso
       </span>
       <h2 className="type-h1 mt-3 text-white">Tu diagnóstico está listo.</h2>
@@ -51,7 +51,10 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
         Dinos a dónde enviarlo y con quién estamos hablando.
       </p>
 
-      <div className="card-tonal mt-8 space-y-5 rounded-[20px] p-7 text-white shadow-[0_24px_60px_-28px_rgba(24,12,64,0.45)] [&_label]:text-white/85 sm:p-8">
+      <div
+        className="mt-8 space-y-5 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.55)] sm:p-8"
+        style={{ backgroundColor: "var(--color-card)" }}
+      >
         <div className="space-y-2">
           <Label htmlFor="nombre">Nombre</Label>
           <Input
@@ -99,7 +102,7 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
       <div className="mt-8">
         <Button
           type="submit"
-          className="h-[52px] rounded-full bg-white px-8 text-base font-semibold text-primary shadow-lg transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] hover:bg-white active:scale-100"
+          className="h-[52px] rounded-full bg-[var(--color-primary)] px-8 text-base font-semibold text-[var(--color-primary-foreground)] shadow-lg transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] active:scale-100"
         >
           Ver mi diagnóstico
         </Button>

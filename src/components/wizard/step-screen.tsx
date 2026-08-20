@@ -64,7 +64,7 @@ export function StepScreen({
       className="mx-auto flex min-h-[calc(100vh-9rem)] max-w-3xl flex-col justify-center py-6"
     >
       <motion.div variants={item} className="flex items-center gap-2">
-        <span className="type-small font-semibold uppercase tracking-[0.12em] text-white/65">
+        <span className="type-small font-semibold uppercase tracking-[0.14em] text-[#F6C967]">
           {title}
         </span>
         {optional && (
@@ -73,7 +73,7 @@ export function StepScreen({
       </motion.div>
 
       <motion.p variants={item} className="type-small mt-1 font-medium text-white/50">
-        Step {index + 1} of {total}
+        Paso {index + 1} de {total}
       </motion.p>
 
       <motion.h2 variants={item} className="type-h1 mt-3 text-white">
@@ -86,9 +86,10 @@ export function StepScreen({
 
       <motion.div
         variants={item}
-        className="card-tonal mt-8 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(24,12,64,0.45)] sm:p-8"
+        className="mt-8 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.55)] sm:p-8"
+        style={{ backgroundColor: "var(--color-card)" }}
       >
-        <div className="space-y-6 text-white [&_label]:text-white/85">{children}</div>
+        <div className="space-y-6 text-[var(--color-card-foreground)]">{children}</div>
       </motion.div>
 
       <motion.div variants={item} className="mt-8 flex items-center gap-3">
@@ -97,18 +98,18 @@ export function StepScreen({
             type="button"
             variant="ghost"
             onClick={onBack}
-            aria-label="Back"
+            aria-label="Atrás"
             className="h-[52px] rounded-full px-5 text-base text-white transition-[background-color] duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:bg-white/15 hover:text-white"
           >
             <Icon name="arrow_back" className="text-[20px]" />
-            Back
+            Atrás
           </Button>
         )}
         {!hideContinue && (
           <Button
             type="submit"
             disabled={!canContinue}
-            className="h-[52px] rounded-full bg-white px-8 text-base font-semibold text-primary shadow-lg transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] hover:bg-white active:scale-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
+            className="h-[52px] rounded-full bg-[var(--color-primary)] px-8 text-base font-semibold text-[var(--color-primary-foreground)] shadow-lg transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] active:scale-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
           >
             {isLast ? "Ver mi resultado" : "Continuar"}
           </Button>
@@ -120,7 +121,7 @@ export function StepScreen({
             onClick={onSkip}
             className="h-[52px] rounded-full px-5 text-base text-white transition-[background-color] duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:bg-white/15 hover:text-white"
           >
-            Skip
+            Omitir
           </Button>
         )}
       </motion.div>

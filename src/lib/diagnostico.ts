@@ -208,7 +208,7 @@ const DIMENSION_TIER_LABELS: [DimensionTierLabel, DimensionTierLabel, DimensionT
   "Sólido",
 ];
 
-const DIMENSION_TIER_COLORS = ["#C24E3A", "#D4A24E", "#5B8AA6", "#4E9E6D"];
+const DIMENSION_TIER_COLORS = ["#111111", "#6B6B66", "#0C2156", "#B8892E"]; // Ink · Gris de soporte · Navy · Dorado (oscurecido para contraste de texto)
 
 export function getDimensionTierLabel(points: number): DimensionTierLabel {
   return DIMENSION_TIER_LABELS[Math.max(0, Math.min(3, points))];
