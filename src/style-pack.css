@@ -1,17 +1,22 @@
 /* StylePack — Axis Consultores / Diagnóstico Financiero
  *
- * Implementación 1:1 del "CMO Marketing UI Kit" de Axis:
- *   Navy institucional  #0C2156 → confianza/autoridad, fondos de alto impacto
- *   Dorado de acción    #F6C967 → único acento de conversión (CTA, énfasis)
- *   Ink editorial       #111111 → titulares y datos sobre fondo claro
- *   Gris de soporte      #6B6B66 → texto secundario, descripciones
- *   Canvas suave         #F7F7F5 → fondos de transición/sección
- *   Blanco               #FFFFFF → superficie de tarjetas y formularios
+ * Paleta retrabajada a petición de Eric: se reduce el dorado del UI Kit
+ * original a casi cero uso (proliferaba demasiado en la app) y se
+ * reemplaza por tonos de azul — azul rey como acento principal, azul
+ * claro como tinte secundario — sobre la base navy institucional.
+ *
+ *   Navy institucional   #0C2156 → fondos de alto impacto, base de la app
+ *   Azul rey (acento)    #2A46E0 → CTA, progreso, énfasis — el único acento vivo
+ *   Azul claro (tinte)   #E7F0FF → fondos suaves, avatares, detalles menores
+ *   Ink editorial        #111111 → titulares y datos sobre fondo claro
+ *   Gris de soporte       #6B7280 → texto secundario, descripciones
+ *   Canvas suave          #F7F7F5 → fondos de transición/sección
+ *   Blanco                #FFFFFF → superficie de tarjetas y formularios
  *
  * Tipografía: Erode (serif editorial) para titulares/cifras — sustituida por
  * Fraunces, la alternativa libre en Google Fonts más cercana en carácter,
- * ya que Erode es de licencia comercial (Fenotype). Si el equipo cuenta con
- * la licencia de Erode, basta con swap del @font-face abajo.
+ * ya que Erode es de licencia comercial. Si el equipo cuenta con la
+ * licencia de Erode, basta con swap del @font-face.
  * Inter para navegación, botones, formularios y texto de apoyo.
  * Imported AFTER index.css — these values override the neutral defaults.
  */
@@ -25,35 +30,47 @@
   /* Radius — cápsula redondeada en CTAs, tarjetas sobrias sin exceso */
   --radius: 1rem;
 
-  /* Colors — 1:1 con el UI Kit, sin colores adicionales fuera del sistema */
+  /* Colors — paleta azul, dorado retirado casi por completo */
   --color-background: #0c2156; /* Navy institucional: fondo de alto impacto de la app */
   --color-foreground: #ffffff;
-  --color-card: #ffffff; /* Blanco: superficie de tarjetas y formularios */
-  --color-card-foreground: #111111; /* Ink editorial */
+  --color-card: #ffffff;
+  --color-card-foreground: #111111;
   --color-popover: #ffffff;
   --color-popover-foreground: #111111;
-  /* Primary — Dorado de acción. Reservado para CTA y énfasis, nunca decorativo. */
-  --color-primary: #f6c967;
-  --color-primary-foreground: #111111; /* "Texto oscuro" sobre dorado, como especifica el kit */
-  --color-secondary: #f7f7f5; /* Canvas suave */
+  /* Primary — Azul rey. Único acento vivo: CTA, progreso, foco. */
+  --color-primary: #2a46e0;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f7f7f5;
   --color-secondary-foreground: #111111;
   --color-muted: #f7f7f5;
-  --color-muted-foreground: #6b6b66; /* Gris de soporte */
-  --color-accent: #f6c967;
-  --color-accent-foreground: #111111;
-  --color-destructive: #0c2156;
+  --color-muted-foreground: #6b7280;
+  --color-accent: #e7f0ff; /* Azul claro — tinte suave, no protagonista */
+  --color-accent-foreground: #2a46e0;
+  --color-destructive: #b3423a;
   --color-destructive-foreground: #ffffff;
-  --color-border: rgba(17, 17, 17, 0.12);
-  --color-input: rgba(17, 17, 17, 0.15);
-  --color-ring: #f6c967;
-  --color-sidebar: #f7f7f5;
+  --color-border: rgba(17, 17, 17, 0.1);
+  --color-input: rgba(17, 17, 17, 0.14);
+  --color-ring: #2a46e0;
+  --color-sidebar: #ffffff;
   --color-sidebar-foreground: #111111;
   --color-sidebar-primary: #0c2156;
   --color-sidebar-primary-foreground: #ffffff;
-  --color-sidebar-accent: #f6c967;
-  --color-sidebar-accent-foreground: #111111;
+  --color-sidebar-accent: #e7f0ff;
+  --color-sidebar-accent-foreground: #0c2156;
   --color-sidebar-border: rgba(17, 17, 17, 0.12);
   --color-sidebar-ring: #0c2156;
+
+  /* Alias de compatibilidad — varios componentes referencian estos nombres
+     directamente (var(--color-navy), var(--color-gold), etc). Se mantienen
+     como alias del mismo valor para no tener que tocar archivo por archivo.
+     "--color-gold" ahora APUNTA AL AZUL REY: como pidió Eric, se retira el
+     dorado, pero el nombre de variable se conserva por compatibilidad. */
+  --color-navy: #0c2156;
+  --color-gold: #2a46e0; /* alias legado → azul rey, ya no dorado */
+  --color-royal: #2a46e0;
+  --color-sky: #e7f0ff;
+  --color-ink: #111111;
+  --color-gray-support: #6b7280;
 }
 
 body {
@@ -68,78 +85,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-heading-weight);
 }
 
-/* ---------------------------------------------------------------------------
- * Progressive-disclosure flow skin — depth + warmth (redesign)
- * Layered gradient canvas, real card elevation, gradient CTA, accent moments.
- * ------------------------------------------------------------------------- */
 .calc-canvas {
-  /* Navy institucional sólido — el kit lo reserva exactamente para este uso:
-     "fondos de alto impacto" en piezas de captación. Sobriedad > efectos. */
   background-color: #0c2156;
 }
-/* On-canvas text that sits directly on the saturated gradient. */
-.on-canvas { color: #ffffff; }
-.on-canvas-dim { color: rgba(255, 255, 255, 0.72); }
-.rule-on-canvas { background-color: rgba(255, 255, 255, 0.28); }
 
-/* Resting card elevation (done rows, panels). */
-.card-elevated {
-  box-shadow:
-    0 1px 2px rgba(76, 38, 138, 0.06),
-    0 16px 34px -16px rgba(90, 50, 190, 0.24);
-}
-
-/* The active step lifts noticeably off the canvas. */
-.card-active {
-  box-shadow:
-    0 2px 6px rgba(76, 38, 138, 0.08),
-    0 32px 64px -22px rgba(107, 83, 255, 0.38);
-}
-
-/* The signature gradient — #8D49F7 (bottom-left) → #6B53FF (top-right). */
-.brand-gradient {
-  background-image: linear-gradient(to top right, #8d49f7, #6b53ff);
-}
-.cta-gradient {
-  background-image: linear-gradient(to top right, #8d49f7, #6b53ff);
-}
-.cta-glow {
-  box-shadow: 0 12px 28px -8px rgba(122, 78, 251, 0.55);
-}
-
-/* Gradient text (hero number). */
-.text-gradient {
-  background-image: linear-gradient(to top right, #8d49f7, #6b53ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Tinted panel behind the results hero number. */
-.hero-panel {
-  background: linear-gradient(150deg, rgba(122, 78, 251, 0.15), rgba(122, 78, 251, 0.03));
-}
-
-/* Positive/savings emphasis. */
-.text-success {
-  color: oklch(0.58 0.15 155);
-}
-
-/* Active rail node halo (white, for on-canvas placement). */
-.rail-active-glow {
-  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.28);
-}
-
-/* ---------------------------------------------------------------------------
- * Design tokens — type scale, easing, and form fields for the flow.
- * Display = Fraunces (serif editorial). Tight negative tracking, editorial leading.
- * Spacing rhythm (px): 8 · 16 · 24 · 32 · 40 · 48 · 64.
- * ------------------------------------------------------------------------- */
 :root {
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Google Material Symbols (Rounded) — icon ligatures via <span>. */
 .material-symbols-rounded {
   font-family: "Material Symbols Rounded";
   font-weight: normal;
@@ -197,49 +150,6 @@ h1, h2, h3, h4, h5, h6 {
 .type-micro {
   font-size: 0.75rem;
   line-height: 1.4;
-}
-
-/* Big, friendly field value (beats shadcn's md:text-sm via load order). */
-.field-xl {
-  font-size: 1.875rem;
-  letter-spacing: -0.02em;
-}
-@media (min-width: 640px) {
-  .field-xl {
-    font-size: 2.25rem;
-  }
-}
-
-/* Tonal, monochromatic surfaces: a lighter, frosted shade of the saturated
- * field — never white. White text throughout. */
-.card-tonal {
-  background-color: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(20px) saturate(1.1);
-  -webkit-backdrop-filter: blur(20px) saturate(1.1);
-}
-.field-tonal {
-  background-color: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 14px;
-  color: #fff;
-  transition:
-    border-color 150ms var(--ease-smooth),
-    background-color 150ms var(--ease-smooth),
-    box-shadow 150ms var(--ease-smooth);
-}
-.field-tonal::placeholder {
-  color: rgba(255, 255, 255, 0.55);
-}
-.field-tonal:hover {
-  background-color: rgba(255, 255, 255, 0.18);
-}
-.field-tonal:focus,
-.field-tonal:focus-visible {
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.24);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.18);
 }
 
 @media (prefers-reduced-motion: reduce) {

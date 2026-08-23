@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import { motion } from "motion/react";
 import { Icon } from "@/components/wizard/icon";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { ResultStamp } from "./result-stamp";
+import { ScoreRadialCard } from "@/components/ui/score-radial-card";
 import { TestimonialsSection } from "./testimonials-section";
-import { getDimensionTierLabel, type ScoreResult, type Tier } from "@/lib/diagnostico";
+import { getDimensionTierLabel, type ScoreResult, type Tier, type TierId } from "@/lib/diagnostico";
 import type { LeadData } from "./lead-form";
 
-// TODO: reemplazar si el equipo comercial cambia de calendario en el futuro.
 const CALENDLY_URL = "https://calendly.com/etrevino-axisconsultoresmx/30min";
 
 interface DiagnosticoResultProps {
@@ -23,11 +22,11 @@ declare global {
   }
 }
 
-// Severidad comunicada con intensidad de navy (no con un semáforo de
-// colores) — regla del UI Kit: sin colores adicionales sin función clara.
-// El dorado se reserva exclusivamente para el CTA de esta pantalla.
-const SEVERITY_FILL = ["rgba(12,33,86,0.28)", "rgba(12,33,86,0.5)", "rgba(12,33,86,0.75)", "var(--color-navy)"];
-const SEVERITY_TEXT = ["#8a8a86", "#6b6b67", "var(--color-navy)", "var(--color-navy)"];
+const SEVERITY_FILL = ["rgba(42,70,224,0.25)", "rgba(42,70,224,0.5)", "rgba(42,70,224,0.75)", "#2A46E0"];
+const SEVERITY_TEXT = ["#8a8a86", "#6b6b67", "#2A46E0", "#2A46E0"];
+
+const TIER_STATUS: Record<TierId, string> = { riesgo: "Riesgo", estable: "Estable", optimizado: "Óptimo" };
+const TIER_ICON: Record<TierId, string> = { riesgo: "priority_high", estable: "insights", optimizado: "verified" };
 
 export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoResultProps) {
   useEffect(() => {
@@ -59,29 +58,16 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
       className="mx-auto flex max-w-2xl flex-col py-6"
     >
-      {/* --- Cabecera: sello + veredicto general --- */}
-      <div
-        className="rounded-[20px] p-8 text-center shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-10"
-        style={{ backgroundColor: "var(--color-card)" }}
-      >
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gray-support)]">
-          Diagnóstico para {lead.empresa}
-        </p>
+      <ScoreRadialCard
+        eyebrow={`Diagnóstico para ${lead.empresa}`}
+        title={tier.title}
+        value={score.percent}
+        status={TIER_STATUS[tier.id]}
+        progress={score.percent}
+        icon={<Icon name={TIER_ICON[tier.id]} className="text-[20px]" />}
+        description={tier.description}
+      />
 
-        <div className="mt-5 flex justify-center">
-          <ResultStamp tierId={tier.id} label={tier.stamp} />
-        </div>
-
-        <h2 className="font-heading mt-6 text-[26px] leading-tight text-[var(--color-ink)] sm:text-[32px]">
-          {tier.title}
-        </h2>
-
-        <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-[var(--color-gray-support)] sm:text-base">
-          {tier.description}
-        </p>
-      </div>
-
-      {/* --- Scorecard por dimensión --- */}
       <div
         className="mt-4 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
         style={{ backgroundColor: "var(--color-card)" }}
@@ -115,22 +101,20 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
         </div>
       </div>
 
-      {/* --- Punto más urgente: el insight de autoridad --- */}
       <div
         className="mt-4 rounded-[20px] border-l-[3px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
-        style={{ backgroundColor: "var(--color-card)", borderColor: "var(--color-navy)" }}
+        style={{ backgroundColor: "var(--color-card)", borderColor: "#2A46E0" }}
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)]">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "#2A46E0" }}>
           Su punto más urgente: {score.weakest.dimension.label}
         </p>
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink)] sm:text-base">{weakestInsight}</p>
       </div>
 
-      {/* --- Lo que ya funciona bien (si aplica) --- */}
       {strongestInsight && (
         <div
           className="mt-4 rounded-[20px] border-l-[3px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
-          style={{ backgroundColor: "var(--color-card)", borderColor: "rgba(12,33,86,0.35)" }}
+          style={{ backgroundColor: "var(--color-card)", borderColor: "rgba(42,70,224,0.35)" }}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gray-support)]">
             Ya tiene bien resuelto: {score.strongest.dimension.label}
@@ -139,7 +123,6 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
         </div>
       )}
 
-      {/* --- CTA — único lugar de la pantalla donde se usa el dorado --- */}
       <div className="mt-8 flex flex-col items-center gap-3 text-center">
         <a href={calendlyHref} target="_blank" rel="noopener noreferrer" onClick={trackCalendlyClick}>
           <ShimmerButton>

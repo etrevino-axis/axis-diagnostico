@@ -3,16 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Icon } from "./icon";
 
 interface StepScreenProps {
-  index: number; // 0-based active step
-  total: number; // total input steps
+  index: number;
+  total: number;
   title: string;
   question: string;
   helper: string;
   optional?: boolean;
   isLast?: boolean;
-  /** Disables the Continue button (e.g. no answer selected yet). Defaults to enabled. */
   canContinue?: boolean;
-  /** Hides the Continue button entirely — use when selecting an option auto-advances. */
   hideContinue?: boolean;
   onBack?: () => void;
   onContinue: () => void;
@@ -30,13 +28,6 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
 };
 
-/**
- * Paso de foco único. Editorial y sobrio: etiqueta dorada breve, titular
- * serif de tamaño CONTENIDO (26–32px, no el clamp gigante de 44–72px que
- * traía el template original), y la tarjeta blanca la aporta el llamador
- * (index.tsx) — este componente ya NO envuelve `children` en su propia
- * tarjeta, para no anidar dos cards blancas una dentro de otra.
- */
 export function StepScreen({
   index,
   total,
@@ -65,7 +56,7 @@ export function StepScreen({
       className="mx-auto flex min-h-[calc(100vh-9rem)] max-w-2xl flex-col justify-center py-6"
     >
       <motion.div variants={item} className="flex items-center gap-2">
-        <span className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--color-gold)" }}>
+        <span className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--color-royal)" }}>
           {title}
         </span>
         {optional && <span className="text-xs text-white/45">· opcional</span>}
@@ -105,7 +96,7 @@ export function StepScreen({
             type="submit"
             disabled={!canContinue}
             className="h-[48px] rounded-full px-8 text-[15px] font-semibold shadow-lg transition-transform duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] active:scale-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100"
-            style={{ backgroundColor: "var(--color-gold)", color: "var(--color-ink)" }}
+            style={{ backgroundColor: "var(--color-royal)", color: "#ffffff" }}
           >
             {isLast ? "Ver mi resultado" : "Continuar"}
           </Button>

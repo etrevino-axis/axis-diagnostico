@@ -14,18 +14,19 @@ export interface ShimmerButtonProps extends React.ButtonHTMLAttributes<HTMLButto
 /**
  * Botón con brillo animado — CTA de Calendly. Estructura fiel al patrón
  * original de 21st.dev (spark detrás + backdrop recortado por `--cut`
- * que deja ver el brillo solo como un borde animado) — solo recoloreado
- * a navy/dorado de marca. Es una animación: no se aprecia en capturas
- * de pantalla estáticas, solo en el navegador.
+ * que deja ver el brillo solo como un borde animado). Recoloreado a
+ * azul rey (fondo oscuro → texto blanco, no ink oscuro como con dorado).
+ * Es una animación: no se aprecia en capturas de pantalla estáticas,
+ * solo en el navegador.
  */
 const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
   (
     {
-      shimmerColor = "#0C2156",
+      shimmerColor = "#E7F0FF",
       shimmerSize = "0.09em",
       shimmerDuration = "2.4s",
       borderRadius = "999px",
-      background = "#F6C967",
+      background = "#2A46E0",
       className,
       children,
       ...props
@@ -45,7 +46,7 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
           } as CSSProperties
         }
         className={cn(
-          "group relative z-0 flex cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap border border-[#111111]/10 px-8 py-4 text-base font-semibold text-[#111111] [background:var(--bg)] [border-radius:var(--radius)]",
+          "group relative z-0 flex cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap border border-white/15 px-8 py-4 text-base font-semibold text-white [background:var(--bg)] [border-radius:var(--radius)]",
           "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-px hover:scale-[1.03]",
           className,
         )}
@@ -67,10 +68,10 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
         <div
           className={cn(
             "insert-0 absolute size-full",
-            "[border-radius:var(--radius)] shadow-[inset_0_-8px_10px_rgba(17,17,17,0.12)]",
+            "[border-radius:var(--radius)] shadow-[inset_0_-8px_10px_rgba(0,0,0,0.18)]",
             "transform-gpu transition-all duration-300 ease-in-out",
-            "group-hover:shadow-[inset_0_-6px_10px_rgba(17,17,17,0.2)]",
-            "group-active:shadow-[inset_0_-10px_10px_rgba(17,17,17,0.22)]",
+            "group-hover:shadow-[inset_0_-6px_10px_rgba(0,0,0,0.28)]",
+            "group-active:shadow-[inset_0_-10px_10px_rgba(0,0,0,0.3)]",
           )}
         />
 

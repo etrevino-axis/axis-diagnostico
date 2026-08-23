@@ -10,7 +10,7 @@ export function DiagnosticoToolbar({ progress, onReset }: DiagnosticoToolbarProp
     <>
       <div className="fixed inset-x-0 top-0 z-40 h-1 bg-white/15">
         <div
-          className="h-full rounded-r-full bg-[#F6C967] transition-[width] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+          className="h-full rounded-r-full bg-[#2A46E0] transition-[width] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
           style={{ width: `${Math.max(0, Math.min(100, progress))}%` }}
           role="progressbar"
           aria-valuenow={Math.round(progress)}
@@ -25,13 +25,13 @@ export function DiagnosticoToolbar({ progress, onReset }: DiagnosticoToolbarProp
           type="button"
           onClick={onReset}
           aria-label="Diagnóstico Financiero Axis — empezar de nuevo"
-          className="flex items-center gap-2 rounded-full text-white/90 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F6C967]/60"
+          className="flex items-center gap-2 rounded-full text-white/90 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A46E0]/60"
         >
-          <Icon name="account_balance" className="text-[20px] text-[#F6C967]" />
+          <Icon name="account_balance" className="text-[20px] text-[#2A46E0]" />
           <span className="font-heading text-base font-semibold tracking-tight">Axis Consultores</span>
         </button>
 
-        <a
+        
           href="https://axismx.framer.website/"
           className="text-sm font-medium text-white/70 transition-colors hover:text-white"
         >
