@@ -32,6 +32,7 @@ export function DiagnosticoToolbar({ progress, onReset }: DiagnosticoToolbarProp
         </button>
 
         
+          <a
           href="https://axismx.framer.website/"
           className="text-sm font-medium text-white/70 transition-colors hover:text-white"
         >
