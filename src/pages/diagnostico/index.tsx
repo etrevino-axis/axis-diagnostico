@@ -95,7 +95,7 @@ export default function Diagnostico() {
 
   return (
     <div className="calc-canvas min-h-screen">
-      <DiagnosticoToolbar progress={progress} onReset={handleRestart} />
+      <DiagnosticoToolbar progress={progress} onReset={handleRestart} storyMode={view === "results"} />
 
       <main className="mx-auto max-w-[90rem] px-6 py-6 sm:px-8">
         {view === "quiz" && (

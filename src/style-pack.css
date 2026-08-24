@@ -74,6 +74,7 @@
 }
 
 body {
+  color-scheme: light; /* evita que iOS/Android reinterpreten los colores de <button>/<input> en modo oscuro del sistema */
   font-feature-settings: "cv11";
   text-rendering: optimizeLegibility;
   text-size-adjust: 100%;

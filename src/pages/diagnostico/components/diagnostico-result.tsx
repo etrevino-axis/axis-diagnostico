@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Icon } from "@/components/wizard/icon";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { ScoreRadialCard } from "@/components/ui/score-radial-card";
+import { ProfileForm } from "./profile-form";
 import { TestimonialsSection } from "./testimonials-section";
 import { getDimensionTierLabel, type ScoreResult, type Tier, type TierId } from "@/lib/diagnostico";
 import type { LeadData } from "./lead-form";
@@ -37,6 +38,21 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
       diagnostico_score: score.percent,
       diagnostico_punto_debil: score.weakest.dimension.id,
     });
+
+    fetch("/api/notify-telegram", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        nombre: lead.nombre,
+        empresa: lead.empresa,
+        telefono: lead.telefono,
+        email: lead.email,
+        scorePercent: score.percent,
+        tierStamp: tier.stamp,
+        puntoDebil: score.weakest.dimension.label,
+      }),
+    }).catch(() => {});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tier.id, score.percent, score.weakest.dimension.id]);
 
   const calendlyHref = `${CALENDLY_URL}?name=${encodeURIComponent(lead.nombre)}&email=${encodeURIComponent(lead.email)}`;
@@ -142,6 +158,8 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
           Volver a empezar
         </button>
       </div>
+
+      <ProfileForm lead={lead} />
 
       <TestimonialsSection />
     </motion.div>

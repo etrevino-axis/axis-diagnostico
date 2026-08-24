@@ -1,19 +1,12 @@
 import { cn } from "@/lib/utils";
 
 interface OptionCardProps {
-  index: number; // 1-based, para la numeración editorial
+  index: number;
   label: string;
   selected: boolean;
   onSelect: () => void;
 }
 
-/**
- * Fila de respuesta numerada — estilo "tarjeta de servicio" del UI Kit
- * (numeración simple, sin saturación visual). Sin radio button circular
- * dorado ni fondo relleno de color — la selección se marca con un borde
- * izquierdo delgado y el numeral en navy. El dorado se reserva para el
- * CTA, no para cada fila de cada pregunta.
- */
 export function OptionCard({ index, label, selected, onSelect }: OptionCardProps) {
   return (
     <button
@@ -39,6 +32,7 @@ export function OptionCard({ index, label, selected, onSelect }: OptionCardProps
           "mt-0.5 shrink-0 text-[13px] font-semibold tabular-nums transition-colors",
           selected ? "text-[var(--color-navy)]" : "text-[var(--color-gray-support)]",
         )}
+        style={{ color: selected ? "#0c2156" : "#6b7280" }}
       >
         {String(index).padStart(2, "0")}
       </span>
@@ -47,6 +41,7 @@ export function OptionCard({ index, label, selected, onSelect }: OptionCardProps
           "text-[15px] leading-snug transition-colors sm:text-base",
           selected ? "font-medium text-[var(--color-ink)]" : "text-[var(--color-ink)]/85",
         )}
+        style={{ color: "#111111" }}
       >
         {label}
       </span>
