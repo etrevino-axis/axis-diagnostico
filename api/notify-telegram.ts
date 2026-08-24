@@ -47,7 +47,7 @@ export default async function handler(req: any, res: any) {
     if (!tgResponse.ok) {
       const errText = await tgResponse.text();
       console.error("Telegram API error:", errText);
-      res.status(200).json({ ok: false, reason: "telegram_api_error", detail: errText });
+      res.status(200).json({ ok: false, reason: "telegram_api_error" });
       return;
     }
 
@@ -66,7 +66,7 @@ function buildLeadMessage(body: NotifyPayload): string {
     `🏢 *Empresa/Actividad:* ${escapeMd(empresa)}\n` +
     `📱 *WhatsApp:* ${escapeMd(telefono)}\n` +
     `✉️ *Correo:* ${escapeMd(email)}\n\n` +
-    `📊 *Resultado:* ${escapeMd(tierStamp)} (${scorePercent}%)\n` +
+    `📊 *Resultado:* ${escapeMd(tierStamp)} \\(${scorePercent}%\\)\n` +
     `⚠️ *Punto más débil:* ${escapeMd(puntoDebil)}`
   );
 }
