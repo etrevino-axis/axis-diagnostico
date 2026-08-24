@@ -47,7 +47,7 @@ export default async function handler(req: any, res: any) {
     if (!tgResponse.ok) {
       const errText = await tgResponse.text();
       console.error("Telegram API error:", errText);
-      res.status(200).json({ ok: false, reason: "telegram_api_error" });
+      res.status(200).json({ ok: false, reason: "telegram_api_error", detail: errText });
       return;
     }
 
