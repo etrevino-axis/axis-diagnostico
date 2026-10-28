@@ -71,7 +71,7 @@ export function ProfileForm({ lead }: ProfileFormProps) {
 
   return (
     <div
-      className="mt-4 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
+      className="mt-4 axis-card p-7 sm:p-8"
       style={{ backgroundColor: "var(--color-card)" }}
     >
       <AnimatePresence mode="wait">
@@ -91,7 +91,7 @@ export function ProfileForm({ lead }: ProfileFormProps) {
               <button
                 type="button"
                 onClick={() => setView("questions")}
-                className="h-[44px] rounded-full px-6 text-sm font-semibold text-white transition-transform duration-150 hover:scale-[1.02]"
+                className="h-[44px] rounded-[10px] px-6 text-sm font-semibold text-white transition-transform duration-150 hover:scale-[1.02]"
                 style={{ backgroundColor: "var(--color-royal)" }}
               >
                 Comenzar
@@ -128,7 +128,7 @@ export function ProfileForm({ lead }: ProfileFormProps) {
               </button>
             </div>
             <h3 className="font-heading mt-2 text-xl text-[var(--color-ink)]">{question.question}</h3>
-            <div className="mt-4 rounded-[var(--radius)] border border-black/8 px-2">
+            <div className="mt-4">
               {question.options.map((option, i) => (
                 <OptionCard
                   key={option.id}

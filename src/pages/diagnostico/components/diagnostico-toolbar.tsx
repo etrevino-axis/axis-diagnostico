@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { Icon } from "@/components/wizard/icon";
 
 interface DiagnosticoToolbarProps {
   progress: number;
@@ -13,11 +12,11 @@ const PULSE_STARTS_AT_S = STORY_DURATION_S - 4;
 export function DiagnosticoToolbar({ progress, onReset, storyMode = false }: DiagnosticoToolbarProps) {
   return (
     <>
-      <div className="fixed inset-x-0 top-0 z-40 h-1 overflow-hidden bg-white/15">
+      <div className="fixed inset-x-0 top-0 z-40 h-1 overflow-hidden bg-[#e8edf8]">
         {storyMode ? (
           <motion.div
             key="story-bar"
-            className="relative h-full bg-[#2A46E0]"
+            className="relative h-full bg-[#021f74]"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: STORY_DURATION_S, ease: "linear" }}
@@ -36,7 +35,7 @@ export function DiagnosticoToolbar({ progress, onReset, storyMode = false }: Dia
           </motion.div>
         ) : (
           <div
-            className="h-full rounded-r-full bg-[#2A46E0] transition-[width] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+            className="h-full rounded-r-full bg-[#021f74] transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
             style={{ width: `${Math.max(0, Math.min(100, progress))}%` }}
             role="progressbar"
             aria-valuenow={Math.round(progress)}
@@ -48,20 +47,27 @@ export function DiagnosticoToolbar({ progress, onReset, storyMode = false }: Dia
       </div>
 
       <header className="relative z-30 mx-auto flex max-w-[90rem] items-center justify-between gap-4 px-6 py-5 sm:px-8">
-        <button
+        <motion.button
           type="button"
           onClick={onReset}
           aria-label="Diagnóstico Financiero Axis — empezar de nuevo"
-          className="flex items-center gap-2 rounded-full text-white/90 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A46E0]/60"
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#021f74]/40"
         >
-          <Icon name="account_balance" className="text-[20px] text-[#2A46E0]" />
-          <span className="font-heading text-base font-semibold tracking-tight">Axis Consultores</span>
-        </button>
+          <span
+            className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-white"
+            style={{ border: "2px solid #e8edf8", boxShadow: "0 4px 20px rgba(2,31,116,.14)" }}
+          >
+            <img src="/logoaxis.png" alt="" width={32} height={32} style={{ objectFit: "contain" }} />
+          </span>
+          <span className="text-[15px] font-bold tracking-tight text-[#021f74]">Axis Consultores</span>
+        </motion.button>
 
-        
-          <a
+        <a
           href="https://axismx.framer.website/"
-          className="text-sm font-medium text-white/70 transition-colors hover:text-white"
+          className="text-sm font-medium text-[#2e384c] transition-colors hover:text-[#021f74]"
         >
           Volver al sitio
         </a>

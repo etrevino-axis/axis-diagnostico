@@ -42,12 +42,12 @@ const thirdColumn = testimonials.slice(4, 6);
 
 export function TestimonialsSection() {
   return (
-    <div className="mt-4 overflow-hidden rounded-[20px] py-10" style={{ backgroundColor: "var(--color-navy)" }}>
+    <div className="axis-card mt-4 overflow-hidden py-10">
       <div className="mx-auto max-w-lg px-6 text-center">
-        <span className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--color-gold)" }}>
+        <span className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "#2e384c" }}>
           Testimonios
         </span>
-        <h3 className="font-heading mt-3 text-2xl text-white sm:text-[28px]">Empresas que ya tienen claridad</h3>
+        <h3 className="font-heading mt-3 text-2xl font-bold tracking-[-0.02em] text-[#021f74] sm:text-[28px]">Empresas que ya tienen claridad</h3>
       </div>
 
       <div className="mt-8 flex max-h-[420px] justify-center gap-4 overflow-hidden px-6 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] sm:max-h-[480px]">

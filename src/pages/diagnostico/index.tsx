@@ -111,7 +111,7 @@ export default function Diagnostico() {
             onBack={activeStep > 0 ? handleBack : undefined}
             onContinue={goNext}
           >
-            <div className="rounded-[var(--radius)] bg-white px-5 py-2 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.5)] sm:px-6">
+            <div>
               {question.options.map((option, i) => (
                 <OptionCard
                   key={option.id}

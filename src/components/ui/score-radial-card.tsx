@@ -60,7 +60,7 @@ export const ScoreRadialCard: React.FC<ScoreRadialCardProps> = ({
   return (
     <div
       className={cn(
-        "relative flex w-full flex-col gap-4 overflow-hidden rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8",
+        "relative flex w-full flex-col gap-4 overflow-hidden axis-card p-7 sm:p-8",
         className,
       )}
       style={{ backgroundColor: "var(--color-card)", color: "var(--color-card-foreground)" }}
@@ -73,10 +73,10 @@ export const ScoreRadialCard: React.FC<ScoreRadialCardProps> = ({
               {eyebrow}
             </p>
           )}
-          <h3 className="font-heading mt-1 text-xl text-[var(--color-card-foreground)] sm:text-2xl">{title}</h3>
+          <h3 className="font-heading mt-1 text-xl font-bold tracking-[-0.02em] text-[var(--color-card-foreground)] sm:text-2xl">{title}</h3>
         </div>
         <div
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px]"
           style={{ backgroundColor: "var(--color-primary)", color: "var(--color-primary-foreground)" }}
         >
           {icon}
@@ -101,7 +101,7 @@ export const ScoreRadialCard: React.FC<ScoreRadialCardProps> = ({
             r={radius}
             strokeWidth="12"
             fill="transparent"
-            stroke="rgba(42,70,224,0.12)"
+            stroke="rgba(2,31,116,0.10)"
             strokeDasharray="8 12"
             strokeLinecap="round"
           />
