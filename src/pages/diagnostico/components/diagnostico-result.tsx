@@ -5,7 +5,7 @@ import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { ScoreRadialCard } from "@/components/ui/score-radial-card";
 import { ProfileForm } from "./profile-form";
 import { TestimonialsSection } from "./testimonials-section";
-import { getDimensionTierLabel, type ScoreResult, type Tier, type TierId } from "@/lib/diagnostico";
+import { getDimensionTierLabel, type FitResult, type ScoreResult, type Tier, type TierId } from "@/lib/diagnostico";
 import type { LeadData } from "./lead-form";
 
 const CALENDLY_URL = "https://calendly.com/etrevino-axisconsultoresmx/30min";
@@ -13,6 +13,7 @@ const CALENDLY_URL = "https://calendly.com/etrevino-axisconsultoresmx/30min";
 interface DiagnosticoResultProps {
   tier: Tier;
   score: ScoreResult;
+  fit: FitResult;
   lead: LeadData;
   onRestart: () => void;
 }
@@ -29,7 +30,7 @@ const SEVERITY_TEXT = ["#8a93a8", "#5a6580", "#021f74", "#021f74"];
 const TIER_STATUS: Record<TierId, string> = { riesgo: "Riesgo", estable: "Estable", optimizado: "Óptimo" };
 const TIER_ICON: Record<TierId, string> = { riesgo: "priority_high", estable: "insights", optimizado: "verified" };
 
-export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoResultProps) {
+export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: DiagnosticoResultProps) {
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
@@ -37,6 +38,7 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
       diagnostico_tier: tier.id,
       diagnostico_score: score.percent,
       diagnostico_punto_debil: score.weakest.dimension.id,
+      diagnostico_perfil: fit.fit,
     });
 
     fetch("/api/notify-telegram", {
@@ -50,6 +52,8 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
         scorePercent: score.percent,
         tierStamp: tier.stamp,
         puntoDebil: score.weakest.dimension.label,
+        perfil: fit.label,
+        perfilDetalle: fit.details,
       }),
     }).catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -7,7 +7,12 @@
  * un error y no se repite aquí. Cada `question` + `helper` juntos
  * reproducen la oración completa tal como fue escrita.
  *
- * 6 dimensiones, una pregunta cada una. Opciones ordenadas de mejor (1)
+ * v6 (arquetipo "cliente base"): 3 preguntas de diagnóstico (las más cercanas al dolor
+ * de contabilidad atrasada) + 3 de calificación sin puntaje (ver QUALIFICATION_QUESTIONS).
+ * Las dimensiones eficiencia_fiscal, toma_decisiones y preparacion_terceros se retiraron del
+ * quiz pero se conservan en DIMENSIONS por si se reactivan.
+ *
+ * Dimensiones puntuadas, una pregunta cada una. Opciones ordenadas de mejor (1)
  * a peor (4) tal como las definió Eric → puntos 3,2,1,0 respectivamente.
  * Sin IA, sin backend: reglas puras y auditables.
  */
@@ -77,65 +82,9 @@ export const QUESTIONS: DiagnosticoQuestion[] = [
       { id: "atencion", label: "Sé que tengo situaciones que necesitan atención.", points: 0 },
     ],
   },
-  {
-    id: "eficiencia_fiscal",
-    dimensionId: "eficiencia_fiscal",
-    title: "Eficiencia fiscal",
-    question:
-      "¿Qué tan seguro está de que su situación fiscal está estructurada de la manera más eficiente posible, dentro de lo que permite la ley?",
-    helper:
-      "Por ejemplo, deducciones, gastos, régimen fiscal, inversiones y otras alternativas que podrían aplicar a su situación.",
-    options: [
-      { id: "preventivo", label: "Mi contador revisa esto de manera preventiva.", points: 3 },
-      { id: "sin_periodica", label: "Creo que sí, pero no hacemos una revisión periódica.", points: 2 },
-      { id: "solo_obligaciones", label: "Normalmente solo cumplimos con las obligaciones.", points: 1 },
-      { id: "no_quiero_saber", label: "No quiero saber qué oportunidades estoy dejando pasar.", points: 0 },
-    ],
-  },
-  {
-    id: "toma_decisiones",
-    dimensionId: "toma_decisiones",
-    title: "Toma de decisiones",
-    question: "¿Qué tan preparado está para tomar decisiones financieras?",
-    helper:
-      "Por ejemplo, saber cuánto necesita facturar, cuánto puede gastar, cuándo puede contratar o invertir y cuánto puede destinar a otros objetivos.",
-    options: [
-      { id: "metas_definidas", label: "Muy claro: tengo números y metas definidos.", points: 3 },
-      { id: "cifras_principales", label: "Bastante claro: conozco mis cifras principales.", points: 2 },
-      { id: "sin_calculos", label: "Tengo una idea: pero no hago cálculos periódicos.", points: 1 },
-      {
-        id: "conforme_se_presenta",
-        label: "No lo sé: normalmente decido conforme se presentan las situaciones.",
-        points: 0,
-      },
-    ],
-  },
-  {
-    id: "preparacion_terceros",
-    dimensionId: "preparacion_terceros",
-    title: "Preparación ante terceros",
-    question:
-      "Si mañana necesitara demostrar que su situación fiscal y financiera está en orden, ¿qué tan preparado estaría?",
-    helper:
-      "Por ejemplo, ante una revisión del SAT, una solicitud de crédito, un socio, una auditoría o cualquier otra situación que requiera documentación confiable.",
-    options: [
-      {
-        id: "documentacion_lista",
-        label: "Totalmente preparado: tengo información y documentación actualizada.",
-        points: 3,
-      },
-      { id: "tomaria_tiempo", label: "Preparado: podría reunirla, aunque tomaría tiempo.", points: 2 },
-      { id: "revisar_varias", label: "Parcialmente preparado: tendría que revisar varias cosas.", points: 1 },
-      {
-        id: "no_se_que_presentar",
-        label: "No estoy preparado: no sé exactamente qué necesitaría presentar.",
-        points: 0,
-      },
-    ],
-  },
 ];
 
-export const MAX_SCORE = QUESTIONS.length * 3; // 6 × 3 = 18
+export const MAX_SCORE = QUESTIONS.length * 3; // 3 × 3 = 9
 
 export type Answers = Record<string, string>; // questionId -> optionId
 
@@ -159,7 +108,7 @@ export const DIMENSIONS: DimensionMeta[] = [
     icon: "gavel",
     priority: 0,
     insights: [
-      "Saber que existen situaciones pendientes y no haberlas resuelto es, de las seis áreas de este diagnóstico, la que representa mayor riesgo inmediato — cada mes que pasa sin atenderlas, la exposición ante el SAT se acumula.",
+      "Saber que existen situaciones pendientes y no haberlas resuelto es, de las áreas de este diagnóstico, la que representa mayor riesgo inmediato — cada mes que pasa sin atenderlas, la exposición ante el SAT se acumula.",
       "Tener dudas o pendientes sin resolver rara vez se queda como está — normalmente crece hasta convertirse en un requerimiento formal en el momento menos oportuno.",
       "Creer que está en regla sin haberlo verificado recientemente es una posición común — y también la más fácil de corregir con una revisión puntual antes de que se convierta en un problema real.",
       "Tener la certeza, verificada, de que su situación fiscal está en regla es la base sobre la que se puede construir estrategia — no solo cumplimiento.",
@@ -333,4 +282,95 @@ export const TIERS: Tier[] = [
 
 export function getTier(percent: number): Tier {
   return TIERS.find((t) => percent >= t.min && percent <= t.max) ?? TIERS[0];
+}
+
+// ---------------------------------------------------------------------------
+// Calificación (sin puntaje) — arquetipo "cliente base"
+// ---------------------------------------------------------------------------
+
+export type Fit = "base" | "gris" | "fuera";
+
+export interface QualificationOption {
+  id: string;
+  label: string;
+  fit: Fit;
+}
+
+export interface QualificationQuestion {
+  id: string;
+  title: string;
+  question: string;
+  helper: string;
+  options: QualificationOption[];
+}
+
+export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
+  {
+    id: "q_facturas",
+    title: "Su negocio",
+    question: "¿Cuántas facturas emite su negocio al mes, aproximadamente?",
+    helper: "Un cálculo aproximado es suficiente; nos ayuda a dimensionar el trabajo contable.",
+    options: [
+      { id: "f_10", label: "10 o menos.", fit: "base" },
+      { id: "f_30", label: "De 11 a 30.", fit: "gris" },
+      { id: "f_100", label: "De 31 a 100.", fit: "fuera" },
+      { id: "f_mas", label: "Más de 100.", fit: "fuera" },
+    ],
+  },
+  {
+    id: "q_empleados",
+    title: "Su negocio",
+    question: "¿Cuántas personas tiene contratadas en nómina?",
+    helper: "Sin contarse a usted, si trabaja por su cuenta.",
+    options: [
+      { id: "e_0", label: "Ninguna.", fit: "base" },
+      { id: "e_3", label: "De 1 a 3.", fit: "base" },
+      { id: "e_10", label: "De 4 a 10.", fit: "gris" },
+      { id: "e_mas", label: "Más de 10.", fit: "fuera" },
+    ],
+  },
+  {
+    id: "q_quien_lleva",
+    title: "Su negocio",
+    question: "¿Quién lleva hoy su contabilidad?",
+    helper: "Nos permite entender desde dónde se empezaría.",
+    options: [
+      { id: "l_nadie", label: "Nadie: la tengo atrasada.", fit: "base" },
+      { id: "l_yo", label: "La llevo yo mismo.", fit: "base" },
+      { id: "l_externo", label: "Un contador o despacho externo.", fit: "base" },
+      { id: "l_interno", label: "Un equipo contable interno.", fit: "gris" },
+    ],
+  },
+];
+
+/** Pregunta genérica (diagnóstico o calificación) para el flujo de pasos. */
+export type FlowQuestion = {
+  id: string;
+  title: string;
+  question: string;
+  helper: string;
+  options: { id: string; label: string }[];
+};
+
+export const FLOW_QUESTIONS: FlowQuestion[] = [...QUESTIONS, ...QUALIFICATION_QUESTIONS];
+
+export type FitResult = { fit: Fit; label: string; details: Record<string, string> };
+
+const FIT_LABEL: Record<Fit, string> = {
+  base: "CLIENTE BASE",
+  gris: "REVISAR EN LLAMADA",
+  fuera: "FUERA DE PERFIL BASE",
+};
+
+export function classifyFit(answers: Answers): FitResult {
+  const details: Record<string, string> = {};
+  let worst: Fit = "base";
+  for (const q of QUALIFICATION_QUESTIONS) {
+    const opt = q.options.find((o) => o.id === answers[q.id]);
+    if (!opt) continue;
+    details[q.question] = opt.label;
+    if (opt.fit === "fuera") worst = "fuera";
+    else if (opt.fit === "gris" && worst !== "fuera") worst = "gris";
+  }
+  return { fit: worst, label: FIT_LABEL[worst], details };
 }

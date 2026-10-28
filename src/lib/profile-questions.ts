@@ -21,26 +21,6 @@ export const PROFILE_QUESTIONS: ProfileQuestion[] = [
     ],
   },
   {
-    id: "tamano",
-    question: "¿Cuántas personas trabajan en la empresa?",
-    options: [
-      { id: "1_5", label: "1 a 5" },
-      { id: "6_20", label: "6 a 20" },
-      { id: "21_50", label: "21 a 50" },
-      { id: "mas_50", label: "Más de 50" },
-    ],
-  },
-  {
-    id: "quien_lleva",
-    question: "¿Quién lleva hoy la contabilidad?",
-    options: [
-      { id: "yo_mismo", label: "La llevo yo mismo" },
-      { id: "contador_externo", label: "Un contador externo" },
-      { id: "despacho", label: "Un despacho contable" },
-      { id: "equipo_interno", label: "Tengo equipo contable interno" },
-    ],
-  },
-  {
     id: "motivacion",
     question: "¿Qué lo motivó a tomar este diagnóstico?",
     options: [

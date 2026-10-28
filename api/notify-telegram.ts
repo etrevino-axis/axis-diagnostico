@@ -9,6 +9,8 @@ interface NotifyPayload {
   scorePercent?: number;
   tierStamp?: string;
   puntoDebil?: string;
+  perfil?: string;
+  perfilDetalle?: Record<string, string>;
   profile?: Record<string, string>;
 }
 
@@ -59,7 +61,11 @@ export default async function handler(req: any, res: any) {
 }
 
 function buildLeadMessage(body: NotifyPayload): string {
-  const { nombre, empresa, telefono, email, scorePercent, tierStamp, puntoDebil } = body;
+  const { nombre, empresa, telefono, email, scorePercent, tierStamp, puntoDebil, perfil, perfilDetalle } = body;
+  const icon = perfil === "CLIENTE BASE" ? "✅" : perfil === "REVISAR EN LLAMADA" ? "🟡" : "⛔";
+  const detalle = Object.entries(perfilDetalle ?? {})
+    .map(([q, a]) => `▪️ ${escapeMd(q)} ${escapeMd(a)}`)
+    .join("\n");
   return (
     `🆕 *Nuevo diagnóstico completado*\n\n` +
     `👤 *Nombre:* ${escapeMd(nombre)}\n` +
@@ -67,7 +73,9 @@ function buildLeadMessage(body: NotifyPayload): string {
     `📱 *WhatsApp:* ${escapeMd(telefono)}\n` +
     `✉️ *Correo:* ${escapeMd(email)}\n\n` +
     `📊 *Resultado:* ${escapeMd(tierStamp)} \\(${scorePercent}%\\)\n` +
-    `⚠️ *Punto más débil:* ${escapeMd(puntoDebil)}`
+    `⚠️ *Punto más débil:* ${escapeMd(puntoDebil)}\n\n` +
+    `${icon} *Perfil:* ${escapeMd(perfil)}\n` +
+    detalle
   );
 }
 
