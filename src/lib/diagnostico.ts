@@ -7,8 +7,8 @@
  * un error y no se repite aquí. Cada `question` + `helper` juntos
  * reproducen la oración completa tal como fue escrita.
  *
- * v6 (arquetipo "cliente base"): 3 preguntas de diagnóstico (las más cercanas al dolor
- * de contabilidad atrasada) + 3 de calificación sin puntaje (ver QUALIFICATION_QUESTIONS).
+ * v6 (arquetipo "cliente base"): 2 preguntas de diagnóstico puntuadas (cumplimiento fiscal e
+ * información financiera) + 4 de contexto/calificación sin puntaje (ver QUALIFICATION_QUESTIONS).
  * Las dimensiones eficiencia_fiscal, toma_decisiones y preparacion_terceros se retiraron del
  * quiz pero se conservan en DIMENSIONS por si se reactivan.
  *
@@ -42,34 +42,6 @@ export interface DiagnosticoQuestion {
 
 export const QUESTIONS: DiagnosticoQuestion[] = [
   {
-    id: "informacion_financiera",
-    dimensionId: "informacion_financiera",
-    title: "Información financiera",
-    question:
-      "Si hoy necesitaras saber exactamente cómo está tu situación financiera, ¿qué tan fácil sería obtener una respuesta confiable?",
-    helper: "Ya sea para conocer tus ingresos y gastos, saber cuánto ganó realmente o simplemente tener tu contabilidad al día.",
-    options: [
-      { id: "actualizada", label: "Tengo información actualizada y puedo consultarla rápidamente.", points: 3 },
-      { id: "revisar", label: "Tengo la información, pero necesito revisarla o pedirla.", points: 2 },
-      { id: "no_integrada", label: "La información existe, pero no está actualizada o integrada.", points: 1 },
-      { id: "sin_certeza", label: "No tengo certeza de mis números actuales.", points: 0 },
-    ],
-  },
-  {
-    id: "control_gasto",
-    dimensionId: "control_gasto",
-    title: "Control de gasto",
-    question: "¿Qué tan claro tienes dónde estás utilizando tu dinero?",
-    helper:
-      "Considera gastos, costos, pagos, inversiones y, si aplica, cuáles de ellos están afectando la rentabilidad de tu actividad.",
-    options: [
-      { id: "exacto", label: "Sé exactamente en qué se está utilizando.", points: 3 },
-      { id: "idea_no_monitoreo", label: "Tengo una idea, aunque no lo monitoreo regularmente.", points: 2 },
-      { id: "principales", label: "Conozco mis principales gastos, pero no tengo una visión completa.", points: 1 },
-      { id: "saldo", label: "Normalmente reviso mi saldo bancario para saber cómo voy.", points: 0 },
-    ],
-  },
-  {
     id: "cumplimiento_fiscal",
     dimensionId: "cumplimiento_fiscal",
     title: "Cumplimiento fiscal",
@@ -82,9 +54,23 @@ export const QUESTIONS: DiagnosticoQuestion[] = [
       { id: "atencion", label: "Sé que tengo situaciones que necesitan atención.", points: 0 },
     ],
   },
+  {
+    id: "informacion_financiera",
+    dimensionId: "informacion_financiera",
+    title: "Información financiera",
+    question:
+      "Si hoy necesitaras saber exactamente cómo está tu situación financiera, ¿qué tan fácil sería obtener una respuesta confiable?",
+    helper: "Ya sea para conocer tus ingresos y gastos, saber cuánto ganaste realmente o simplemente tener tu contabilidad al día.",
+    options: [
+      { id: "actualizada", label: "Tengo información actualizada y puedo consultarla rápidamente.", points: 3 },
+      { id: "revisar", label: "Tengo la información, pero necesito revisarla o pedirla.", points: 2 },
+      { id: "no_integrada", label: "La información existe, pero no está actualizada o integrada.", points: 1 },
+      { id: "sin_certeza", label: "No tengo certeza de mis números actuales.", points: 0 },
+    ],
+  },
 ];
 
-export const MAX_SCORE = QUESTIONS.length * 3; // 3 × 3 = 9
+export const MAX_SCORE = QUESTIONS.length * 3; // 2 × 3 = 6
 
 export type Answers = Record<string, string>; // questionId -> optionId
 
@@ -306,6 +292,31 @@ export interface QualificationQuestion {
 
 export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
   {
+    id: "q_detonante",
+    title: "Tu situación",
+    question: "¿Cuál de estas situaciones se parece más a la tuya hoy?",
+    helper: "Elige la que más se acerque; no hay respuesta incorrecta.",
+    options: [
+      { id: "d_atrasada", label: "Tengo meses de contabilidad sin hacer.", fit: "base" },
+      { id: "d_sin_contador", label: "Mi contador anterior dejó de contestar o se fue.", fit: "base" },
+      { id: "d_nuevo", label: "Acabo de abrir mi negocio o darme de alta.", fit: "base" },
+      { id: "d_yo_mismo", label: "Llevo mi contabilidad yo mismo y no me da el tiempo.", fit: "base" },
+      { id: "d_revisar", label: "Mi contabilidad está en orden; quiero revisarla.", fit: "base" },
+    ],
+  },
+  {
+    id: "q_tiempo",
+    title: "Tu tiempo",
+    question: "¿Cuánto tiempo a la semana te toman tus facturas, impuestos y papeles del negocio?",
+    helper: "Incluye buscar documentos, capturar facturas y resolver dudas con el SAT o el banco.",
+    options: [
+      { id: "t_nada", label: "Casi nada: lo tengo bajo control.", fit: "base" },
+      { id: "t_poco", label: "Una o dos horas.", fit: "base" },
+      { id: "t_varias", label: "Varias horas, y me quita tiempo de lo importante.", fit: "base" },
+      { id: "t_acumula", label: "No lo sé: lo voy dejando y se acumula.", fit: "base" },
+    ],
+  },
+  {
     id: "q_facturas",
     title: "Tu negocio",
     question: "¿Cuántas facturas emite tu negocio al mes, aproximadamente?",
@@ -329,18 +340,6 @@ export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
       { id: "e_mas", label: "Más de 10.", fit: "fuera" },
     ],
   },
-  {
-    id: "q_quien_lleva",
-    title: "Tu negocio",
-    question: "¿Quién lleva hoy tu contabilidad?",
-    helper: "Nos permite entender desde dónde se empezaría.",
-    options: [
-      { id: "l_nadie", label: "Nadie: la tengo atrasada.", fit: "base" },
-      { id: "l_yo", label: "La llevo yo mismo.", fit: "base" },
-      { id: "l_externo", label: "Un contador o despacho externo.", fit: "base" },
-      { id: "l_interno", label: "Un equipo contable interno.", fit: "gris" },
-    ],
-  },
 ];
 
 /** Pregunta genérica (diagnóstico o calificación) para el flujo de pasos. */
@@ -352,7 +351,13 @@ export type FlowQuestion = {
   options: { id: string; label: string }[];
 };
 
-export const FLOW_QUESTIONS: FlowQuestion[] = [...QUESTIONS, ...QUALIFICATION_QUESTIONS];
+const byId = new Map<string, FlowQuestion>(
+  [...QUESTIONS, ...QUALIFICATION_QUESTIONS].map((q) => [q.id, q as FlowQuestion]),
+);
+
+/** Orden final del flujo (6 pasos): detonante, tiempo, cumplimiento, información, facturas, nómina. */
+export const FLOW_ORDER = ["q_detonante", "q_tiempo", "cumplimiento_fiscal", "informacion_financiera", "q_facturas", "q_empleados"];
+export const FLOW_QUESTIONS: FlowQuestion[] = FLOW_ORDER.map((id) => byId.get(id)!);
 
 export type FitResult = { fit: Fit; label: string; details: Record<string, string> };
 
