@@ -18,7 +18,7 @@ interface LeadFormProps {
 
 /**
  * Captura de contacto DESPUÉS de completar el quiz — el visitante ya
- * invirtió tiempo respondiendo y quiere ver su resultado, lo que baja
+ * invirtió tiempo respondiendo y quiere ver tu resultado, lo que baja
  * mucho la fricción comparado con pedir el contacto al inicio.
  *
  * Fase 1: sin backend propio. El submit dispara el evento de conversión
@@ -48,10 +48,10 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
         Último paso
       </span>
       <h2 className="font-heading mt-3 text-[26px] font-bold leading-tight tracking-[-0.02em] text-[#021f74] sm:text-[32px]">
-        Su diagnóstico está listo.
+        Tu diagnóstico está listo.
       </h2>
       <p className="mt-3 text-[15px] text-[#2e384c] sm:text-base">
-        Indíquenos a dónde enviarlo y con quién estamos hablando.
+        Dinos a dónde enviarlo y con quién estamos hablando.
       </p>
 
       <div
@@ -66,7 +66,7 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
             required
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
-            placeholder="Su nombre completo"
+            placeholder="Tu nombre completo"
           />
         </div>
         <div className="space-y-2">
@@ -78,7 +78,7 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
             required
             value={empresa}
             onChange={(e) => setEmpresa(e.target.value)}
-            placeholder="Nombre de su empresa"
+            placeholder="Nombre de tu empresa"
           />
         </div>
         <div className="space-y-2">
@@ -104,7 +104,7 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="usted@empresa.com"
+            placeholder="tu@empresa.com"
           />
         </div>
       </div>

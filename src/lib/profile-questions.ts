@@ -12,7 +12,7 @@ export interface ProfileQuestion {
 export const PROFILE_QUESTIONS: ProfileQuestion[] = [
   {
     id: "rol",
-    question: "¿Cuál es su rol en la empresa?",
+    question: "¿Cuál es tu rol en la empresa?",
     options: [
       { id: "dueno", label: "Dueño o Director General" },
       { id: "financiero", label: "Director o Gerente Financiero" },
@@ -22,7 +22,7 @@ export const PROFILE_QUESTIONS: ProfileQuestion[] = [
   },
   {
     id: "motivacion",
-    question: "¿Qué lo motivó a tomar este diagnóstico?",
+    question: "¿Qué te motivó a tomar este diagnóstico?",
     options: [
       { id: "sat", label: "Preocupación por el SAT" },
       { id: "entender_numeros", label: "Quiero entender mejor mis números" },
@@ -32,7 +32,7 @@ export const PROFILE_QUESTIONS: ProfileQuestion[] = [
   },
   {
     id: "fuente",
-    question: "¿Cómo se enteró de Axis Consultores?",
+    question: "¿Cómo te enteraste de Axis Consultores?",
     options: [
       { id: "google", label: "Búsqueda en Google" },
       { id: "recomendacion", label: "Recomendación de alguien" },

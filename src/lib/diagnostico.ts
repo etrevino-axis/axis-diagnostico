@@ -46,8 +46,8 @@ export const QUESTIONS: DiagnosticoQuestion[] = [
     dimensionId: "informacion_financiera",
     title: "Información financiera",
     question:
-      "Si hoy necesitara saber exactamente cómo está su situación financiera, ¿qué tan fácil sería obtener una respuesta confiable?",
-    helper: "Ya sea para conocer sus ingresos y gastos, saber cuánto ganó realmente o simplemente tener su contabilidad al día.",
+      "Si hoy necesitaras saber exactamente cómo está tu situación financiera, ¿qué tan fácil sería obtener una respuesta confiable?",
+    helper: "Ya sea para conocer tus ingresos y gastos, saber cuánto ganó realmente o simplemente tener tu contabilidad al día.",
     options: [
       { id: "actualizada", label: "Tengo información actualizada y puedo consultarla rápidamente.", points: 3 },
       { id: "revisar", label: "Tengo la información, pero necesito revisarla o pedirla.", points: 2 },
@@ -59,9 +59,9 @@ export const QUESTIONS: DiagnosticoQuestion[] = [
     id: "control_gasto",
     dimensionId: "control_gasto",
     title: "Control de gasto",
-    question: "¿Qué tan claro tiene dónde está utilizando su dinero?",
+    question: "¿Qué tan claro tienes dónde estás utilizando tu dinero?",
     helper:
-      "Considere gastos, costos, pagos, inversiones y, si aplica, cuáles de ellos están afectando la rentabilidad de su actividad.",
+      "Considera gastos, costos, pagos, inversiones y, si aplica, cuáles de ellos están afectando la rentabilidad de tu actividad.",
     options: [
       { id: "exacto", label: "Sé exactamente en qué se está utilizando.", points: 3 },
       { id: "idea_no_monitoreo", label: "Tengo una idea, aunque no lo monitoreo regularmente.", points: 2 },
@@ -73,8 +73,8 @@ export const QUESTIONS: DiagnosticoQuestion[] = [
     id: "cumplimiento_fiscal",
     dimensionId: "cumplimiento_fiscal",
     title: "Cumplimiento fiscal",
-    question: "¿Qué tan seguro está de que su situación fiscal está correctamente atendida?",
-    helper: "Incluyendo declaraciones, pagos, facturación y demás obligaciones que correspondan a su actividad.",
+    question: "¿Qué tan seguro estás de que tu situación fiscal está correctamente atendida?",
+    helper: "Incluyendo declaraciones, pagos, facturación y demás obligaciones que correspondan a tu actividad.",
     options: [
       { id: "totalmente_seguro", label: "Totalmente seguro.", points: 3 },
       { id: "creo_que_si", label: "Creo que sí, pero no lo he verificado recientemente.", points: 2 },
@@ -111,7 +111,7 @@ export const DIMENSIONS: DimensionMeta[] = [
       "Saber que existen situaciones pendientes y no haberlas resuelto es, de las áreas de este diagnóstico, la que representa mayor riesgo inmediato — cada mes que pasa sin atenderlas, la exposición ante el SAT se acumula.",
       "Tener dudas o pendientes sin resolver rara vez se queda como está — normalmente crece hasta convertirse en un requerimiento formal en el momento menos oportuno.",
       "Creer que está en regla sin haberlo verificado recientemente es una posición común — y también la más fácil de corregir con una revisión puntual antes de que se convierta en un problema real.",
-      "Tener la certeza, verificada, de que su situación fiscal está en regla es la base sobre la que se puede construir estrategia — no solo cumplimiento.",
+      "Tener la certeza, verificada, de que tu situación fiscal está en regla es la base sobre la que se puede construir estrategia — no solo cumplimiento.",
     ],
   },
   {
@@ -120,10 +120,10 @@ export const DIMENSIONS: DimensionMeta[] = [
     icon: "savings",
     priority: 1,
     insights: [
-      "Esa respuesta describe, con honestidad, algo que le está costando dinero cada mes — casi siempre hay deducciones o estructuras fiscales legítimas sin aprovechar, y no preguntarlo no hace que dejen de aplicar.",
+      "Esa respuesta describe, con honestidad, algo que te está costando dinero cada mes — casi siempre hay deducciones o estructuras fiscales legítimas sin aprovechar, y no preguntarlo no hace que dejen de aplicar.",
       "Cumplir sin optimizar es la posición por default de la mayoría de los negocios — y también la más fácil de mejorar, porque no requiere cambiar cómo opera, solo cómo se declara.",
       "Una eficiencia fiscal que no se revisa periódicamente se vuelve obsoleta sin que nadie lo note — la ley cambia, y una estructura que aplicaba hace dos años puede ya no ser la óptima hoy.",
-      "Una revisión preventiva y regular es, literalmente, la definición de una estrategia fiscal bien llevada — muy pocos negocios de su tamaño llegan a este nivel.",
+      "Una revisión preventiva y regular es, literalmente, la definición de una estrategia fiscal bien llevada — muy pocos negocios de tu tamaño llegan a este nivel.",
     ],
   },
   {
@@ -132,10 +132,10 @@ export const DIMENSIONS: DimensionMeta[] = [
     icon: "monitoring",
     priority: 2,
     insights: [
-      "No tener certeza de sus números actuales no es un tema menor: es la razón más común por la que una decisión que parecía correcta termina complicando la operación.",
+      "No tener certeza de tus números actuales no es un tema menor: es la razón más común por la que una decisión que parecía correcta termina complicando la operación.",
       "Tener la información pero sin actualizar o integrar equivale a no tenerla cuando más se necesita — el dato existe, pero llega tarde para decidir con él.",
       "Depender de revisar o pedir la información antes de poder usarla introduce un retraso que, en el momento de una decisión importante, puede costar la oportunidad misma.",
-      "Tener información actualizada y accesible de inmediato es la base sobre la que se construye cualquier decisión financiera sólida — el punto de partida menos común entre negocios de su tamaño.",
+      "Tener información actualizada y accesible de inmediato es la base sobre la que se construye cualquier decisión financiera sólida — el punto de partida menos común entre negocios de tu tamaño.",
     ],
   },
   {
@@ -147,7 +147,7 @@ export const DIMENSIONS: DimensionMeta[] = [
       "Guiarse por el saldo bancario es la señal más clara de que no hay control real del gasto — el saldo dice cuánto dinero hay hoy, no si la operación es rentable.",
       "Conocer los gastos principales sin una visión completa deja fuera, casi siempre, los costos pequeños y recurrentes que en conjunto erosionan la rentabilidad sin que se note mes a mes.",
       "Una idea aproximada, sin monitoreo regular, es exactamente el punto donde un gasto que dejó de tener sentido sigue saliendo durante meses antes de que alguien lo note.",
-      "Saber exactamente en qué se utiliza el dinero es la diferencia entre administrar una operación y simplemente sobrevivirla — la mayoría de los negocios de su tamaño no llega a este nivel.",
+      "Saber exactamente en qué se utiliza el dinero es la diferencia entre administrar una operación y simplemente sobrevivirla — la mayoría de los negocios de tu tamaño no llega a este nivel.",
     ],
   },
   {
@@ -159,7 +159,7 @@ export const DIMENSIONS: DimensionMeta[] = [
       "Decidir sin números listos significa que las decisiones más importantes del negocio se toman con la misma certeza que un volado — funciona hasta que la decisión equivocada cuesta cara.",
       "Una idea sin cálculos periódicos es suficiente para el día a día, pero se queda corta justo en el momento en que una decisión grande requiere precisión, no intuición.",
       "Conocer las cifras principales cubre gran parte del camino — el siguiente paso es tener metas definidas sobre esas cifras, no solo visibilidad de ellas.",
-      "Tener números y metas definidos es lo que separa una operación que reacciona de una que dirige su propio crecimiento.",
+      "Tener números y metas definidos es lo que separa una operación que reacciona de una que dirige tu propio crecimiento.",
     ],
   },
   {
@@ -253,7 +253,7 @@ export const TIERS: Tier[] = [
     stamp: "ZONA DE RIESGO",
     title: "Encontramos al menos un punto de exposición real",
     description:
-      "Este diagnóstico identificó una o más áreas donde su operación está expuesta a un riesgo concreto — no teórico, uno que ya se manifestó o está a punto de hacerlo. Abajo desglosamos exactamente cuál es y qué significa.",
+      "Este diagnóstico identificó una o más áreas donde tu operación está expuesta a un riesgo concreto — no teórico, uno que ya se manifestó o está a punto de hacerlo. Abajo desglosamos exactamente cuál es y qué significa.",
     ctaHelper: "Agenda una cita con un consultor",
     min: 0,
     max: 40,
@@ -261,9 +261,9 @@ export const TIERS: Tier[] = [
   {
     id: "estable",
     stamp: "BASE SÓLIDA, PUNTOS CIEGOS",
-    title: "Tiene control donde se ve — no donde no se ve",
+    title: "Tienes control donde se ve — no donde no se ve",
     description:
-      "El manejo general de su operación es razonable, pero hay al menos un punto ciego que cuesta margen o expone sin que se note todavía.",
+      "El manejo general de tu operación es razonable, pero hay al menos un punto ciego que cuesta margen o expone sin que se note todavía.",
     ctaHelper: "Agenda una cita con un consultor",
     min: 41,
     max: 70,
@@ -273,7 +273,7 @@ export const TIERS: Tier[] = [
     stamp: "OPERACIÓN FINANCIERA MADURA",
     title: "El siguiente nivel ya no es orden, es estrategia",
     description:
-      "Su operación está mejor administrada que la mayoría de los negocios de su tamaño. La siguiente conversación no es sobre poner orden — es sobre usar esa claridad para crecer más rápido y con menos riesgo.",
+      "Tu operación está mejor administrada que la mayoría de los negocios de tu tamaño. La siguiente conversación no es sobre poner orden — es sobre usar esa claridad para crecer más rápido y con menos riesgo.",
     ctaHelper: "Agenda una sesión estratégica",
     min: 71,
     max: 100,
@@ -307,8 +307,8 @@ export interface QualificationQuestion {
 export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
   {
     id: "q_facturas",
-    title: "Su negocio",
-    question: "¿Cuántas facturas emite su negocio al mes, aproximadamente?",
+    title: "Tu negocio",
+    question: "¿Cuántas facturas emite tu negocio al mes, aproximadamente?",
     helper: "Un cálculo aproximado es suficiente; nos ayuda a dimensionar el trabajo contable.",
     options: [
       { id: "f_10", label: "10 o menos.", fit: "base" },
@@ -319,9 +319,9 @@ export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
   },
   {
     id: "q_empleados",
-    title: "Su negocio",
-    question: "¿Cuántas personas tiene contratadas en nómina?",
-    helper: "Sin contarse a usted, si trabaja por su cuenta.",
+    title: "Tu negocio",
+    question: "¿Cuántas personas tienes contratadas en nómina?",
+    helper: "Sin contarte a ti, si trabajas por tu cuenta.",
     options: [
       { id: "e_0", label: "Ninguna.", fit: "base" },
       { id: "e_3", label: "De 1 a 3.", fit: "base" },
@@ -331,8 +331,8 @@ export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
   },
   {
     id: "q_quien_lleva",
-    title: "Su negocio",
-    question: "¿Quién lleva hoy su contabilidad?",
+    title: "Tu negocio",
+    question: "¿Quién lleva hoy tu contabilidad?",
     helper: "Nos permite entender desde dónde se empezaría.",
     options: [
       { id: "l_nadie", label: "Nadie: la tengo atrasada.", fit: "base" },

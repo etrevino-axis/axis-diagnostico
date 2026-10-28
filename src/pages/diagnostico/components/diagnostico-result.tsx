@@ -93,7 +93,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
         style={{ backgroundColor: "var(--color-card)" }}
       >
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gray-support)]">
-          Su radiografía financiera
+          Tu radiografía financiera
         </p>
         <div className="mt-5 space-y-5">
           {score.byDimension.map(({ dimension, points }) => (
@@ -126,7 +126,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
         style={{ backgroundColor: "var(--color-card)", borderColor: "#021f74" }}
       >
         <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "#021f74" }}>
-          Su punto más urgente: {score.weakest.dimension.label}
+          Tu punto más urgente: {score.weakest.dimension.label}
         </p>
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink)] sm:text-base">{weakestInsight}</p>
       </div>
@@ -137,7 +137,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
           style={{ backgroundColor: "var(--color-card)", borderColor: "rgba(2,31,116,0.35)" }}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gray-support)]">
-            Ya tiene bien resuelto: {score.strongest.dimension.label}
+            Ya tienes bien resuelto: {score.strongest.dimension.label}
           </p>
           <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink)] sm:text-base">{strongestInsight}</p>
         </div>
@@ -151,7 +151,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
           </ShimmerButton>
         </a>
         <p className="text-sm text-[#2e384c]">
-          30 minutos, sin costo — revisamos su {score.weakest.dimension.label.toLowerCase()} a fondo.
+          30 minutos, sin costo — revisamos tu {score.weakest.dimension.label.toLowerCase()} a fondo.
         </p>
 
         <button
