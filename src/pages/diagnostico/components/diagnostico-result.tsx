@@ -23,8 +23,8 @@ declare global {
   }
 }
 
-const SEVERITY_FILL = ["rgba(42,70,224,0.25)", "rgba(42,70,224,0.5)", "rgba(42,70,224,0.75)", "#2A46E0"];
-const SEVERITY_TEXT = ["#8a8a86", "#6b6b67", "#2A46E0", "#2A46E0"];
+const SEVERITY_FILL = ["rgba(2,31,116,0.25)", "rgba(2,31,116,0.5)", "rgba(2,31,116,0.75)", "#021f74"];
+const SEVERITY_TEXT = ["#8a93a8", "#5a6580", "#021f74", "#021f74"];
 
 const TIER_STATUS: Record<TierId, string> = { riesgo: "Riesgo", estable: "Estable", optimizado: "Óptimo" };
 const TIER_ICON: Record<TierId, string> = { riesgo: "priority_high", estable: "insights", optimizado: "verified" };
@@ -85,7 +85,7 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
       />
 
       <div
-        className="mt-4 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
+        className="mt-4 axis-card p-7 sm:p-8"
         style={{ backgroundColor: "var(--color-card)" }}
       >
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gray-support)]">
@@ -108,7 +108,7 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
                   <div
                     key={i}
                     className="h-1 flex-1 rounded-full"
-                    style={{ backgroundColor: i < points ? SEVERITY_FILL[points] : "rgba(17,17,17,0.07)" }}
+                    style={{ backgroundColor: i < points ? SEVERITY_FILL[points] : "#e8edf8" }}
                   />
                 ))}
               </div>
@@ -118,10 +118,10 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
       </div>
 
       <div
-        className="mt-4 rounded-[20px] border-l-[3px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
-        style={{ backgroundColor: "var(--color-card)", borderColor: "#2A46E0" }}
+        className="mt-4 axis-card border-l-[3px] p-7 sm:p-8"
+        style={{ backgroundColor: "var(--color-card)", borderColor: "#021f74" }}
       >
-        <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "#2A46E0" }}>
+        <p className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "#021f74" }}>
           Su punto más urgente: {score.weakest.dimension.label}
         </p>
         <p className="mt-3 text-[15px] leading-relaxed text-[var(--color-ink)] sm:text-base">{weakestInsight}</p>
@@ -129,8 +129,8 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
 
       {strongestInsight && (
         <div
-          className="mt-4 rounded-[20px] border-l-[3px] p-7 shadow-[0_24px_60px_-28px_rgba(12,33,86,0.4)] sm:p-8"
-          style={{ backgroundColor: "var(--color-card)", borderColor: "rgba(42,70,224,0.35)" }}
+          className="mt-4 axis-card border-l-[3px] p-7 sm:p-8"
+          style={{ backgroundColor: "var(--color-card)", borderColor: "rgba(2,31,116,0.35)" }}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gray-support)]">
             Ya tiene bien resuelto: {score.strongest.dimension.label}
@@ -146,14 +146,14 @@ export function DiagnosticoResult({ tier, score, lead, onRestart }: DiagnosticoR
             {tier.ctaHelper}
           </ShimmerButton>
         </a>
-        <p className="text-sm text-white/60">
+        <p className="text-sm text-[#2e384c]">
           30 minutos, sin costo — revisamos su {score.weakest.dimension.label.toLowerCase()} a fondo.
         </p>
 
         <button
           type="button"
           onClick={onRestart}
-          className="mt-4 text-sm text-white/50 underline-offset-4 hover:underline"
+          className="mt-4 text-sm text-[#2e384c]/70 underline-offset-4 hover:underline"
         >
           Volver a empezar
         </button>

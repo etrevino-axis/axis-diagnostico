@@ -40,23 +40,22 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
     <motion.form
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       onSubmit={handleSubmit}
       className="mx-auto flex min-h-[calc(100vh-9rem)] max-w-xl flex-col justify-center py-6"
     >
       <span className="text-xs font-semibold uppercase tracking-[0.14em]" style={{ color: "var(--color-gold)" }}>
         Último paso
       </span>
-      <h2 className="font-heading mt-3 text-[26px] leading-tight text-white sm:text-[32px]">
+      <h2 className="font-heading mt-3 text-[26px] font-bold leading-tight tracking-[-0.02em] text-[#021f74] sm:text-[32px]">
         Su diagnóstico está listo.
       </h2>
-      <p className="mt-3 text-[15px] text-white/65 sm:text-base">
+      <p className="mt-3 text-[15px] text-[#2e384c] sm:text-base">
         Indíquenos a dónde enviarlo y con quién estamos hablando.
       </p>
 
       <div
-        className="mt-8 space-y-5 rounded-[20px] p-7 shadow-[0_24px_60px_-28px_rgba(0,0,0,0.5)] sm:p-8"
-        style={{ backgroundColor: "var(--color-card)" }}
+        className="axis-card mt-8 space-y-5 p-7 sm:p-8"
       >
         <div className="space-y-2">
           <Label htmlFor="nombre" className="text-[var(--color-ink)]">

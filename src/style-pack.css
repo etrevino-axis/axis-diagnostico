@@ -22,35 +22,35 @@
  */
 
 :root {
-  --font-heading: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-heading-weight: 600;
+  --font-heading: "DM Sans", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-heading-weight: 700;
   --font-body-weight: 400;
 
   /* Radius — cápsula redondeada en CTAs, tarjetas sobrias sin exceso */
-  --radius: 1rem;
+  --radius: 12px;
 
   /* Colors — paleta azul, dorado retirado casi por completo */
-  --color-background: #0c2156; /* Navy institucional: fondo de alto impacto de la app */
-  --color-foreground: #ffffff;
+  --color-background: #f8f9fc; /* Canvas del portal */
+  --color-foreground: #021f74;
   --color-card: #ffffff;
-  --color-card-foreground: #111111;
+  --color-card-foreground: #021f74;
   --color-popover: #ffffff;
   --color-popover-foreground: #111111;
   /* Primary — Azul rey. Único acento vivo: CTA, progreso, foco. */
-  --color-primary: #2a46e0;
+  --color-primary: #021f74;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #f7f7f5;
+  --color-secondary: #f8f9fc;
   --color-secondary-foreground: #111111;
-  --color-muted: #f7f7f5;
-  --color-muted-foreground: #6b7280;
-  --color-accent: #e7f0ff; /* Azul claro — tinte suave, no protagonista */
-  --color-accent-foreground: #2a46e0;
+  --color-muted: #f8f9fc;
+  --color-muted-foreground: #2e384c;
+  --color-accent: #e8edf8; /* Azul claro — tinte suave, no protagonista */
+  --color-accent-foreground: #021f74;
   --color-destructive: #b3423a;
   --color-destructive-foreground: #ffffff;
-  --color-border: rgba(17, 17, 17, 0.1);
-  --color-input: rgba(17, 17, 17, 0.14);
-  --color-ring: #2a46e0;
+  --color-border: #e8edf8;
+  --color-input: #e8edf8;
+  --color-ring: #021f74;
   --color-sidebar: #ffffff;
   --color-sidebar-foreground: #111111;
   --color-sidebar-primary: #0c2156;
@@ -65,12 +65,12 @@
      como alias del mismo valor para no tener que tocar archivo por archivo.
      "--color-gold" ahora APUNTA AL AZUL REY: como pidió Eric, se retira el
      dorado, pero el nombre de variable se conserva por compatibilidad. */
-  --color-navy: #0c2156;
-  --color-gold: #2a46e0; /* alias legado → azul rey, ya no dorado */
-  --color-royal: #2a46e0;
-  --color-sky: #e7f0ff;
-  --color-ink: #111111;
-  --color-gray-support: #6b7280;
+  --color-navy: #021f74;
+  --color-gold: #021f74; /* alias legado → azul rey, ya no dorado */
+  --color-royal: #021f74;
+  --color-sky: #e8edf8;
+  --color-ink: #021f74;
+  --color-gray-support: #2e384c;
 }
 
 body {
@@ -87,7 +87,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .calc-canvas {
-  background-color: #0c2156;
+  background-color: #f8f9fc;
+  background-image: linear-gradient(135deg, #e8edf8 0%, #f8f9fc 55%, #eef1f9 100%);
+  background-attachment: fixed;
+}
+
+/* Tarjeta estilo portal */
+.axis-card {
+  background: #ffffff;
+  border: 1.5px solid #e8edf8;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(2, 31, 116, 0.09);
 }
 
 :root {
@@ -116,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: clamp(56px, 7vw, 112px);
   line-height: 0.9;
   letter-spacing: -0.02em;
-  font-weight: 600;
+  font-weight: 700;
 }
 .type-h1 {
   font-family: var(--font-heading);
