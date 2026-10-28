@@ -69,7 +69,7 @@ function buildLeadMessage(body: NotifyPayload): string {
   return (
     `🆕 *Nuevo diagnóstico completado*\n\n` +
     `👤 *Nombre:* ${escapeMd(nombre)}\n` +
-    `🏢 *Empresa/Actividad:* ${escapeMd(empresa)}\n` +
+    (empresa ? `🏢 *Empresa/Actividad:* ${escapeMd(empresa)}\n` : "") +
     `📱 *WhatsApp:* ${escapeMd(telefono)}\n` +
     `✉️ *Correo:* ${escapeMd(email)}\n\n` +
     `📊 *Resultado:* ${escapeMd(tierStamp)} \\(${scorePercent}%\\)\n` +
@@ -86,7 +86,7 @@ function buildProfileMessage(body: NotifyPayload): string {
     .join("\n");
   return (
     `📋 *Perfil ampliado*\n` +
-    `_(mismo lead: ${escapeMd(nombre)} — ${escapeMd(empresa)} — ${escapeMd(email)})_\n\n` +
+    `_(mismo lead: ${escapeMd(nombre)} — ${escapeMd(email)})_\n\n` +
     lines
   );
 }

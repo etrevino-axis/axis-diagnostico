@@ -84,10 +84,10 @@ export const ScoreRadialCard: React.FC<ScoreRadialCardProps> = ({
       </div>
 
       {/* Radial Progress and Value */}
-      <div className="relative flex h-52 w-full items-center justify-center">
+      <div className="relative flex h-40 w-full items-center justify-center">
         <svg
-          width="190"
-          height="190"
+          width="150"
+          height="150"
           viewBox="0 0 200 200"
           className="-rotate-90"
           role="progressbar"
@@ -119,7 +119,7 @@ export const ScoreRadialCard: React.FC<ScoreRadialCardProps> = ({
         </svg>
 
         <div className="absolute flex flex-col items-center justify-center">
-          <motion.span className="font-heading text-6xl tracking-tighter text-[var(--color-card-foreground)]">
+          <motion.span className="font-heading text-5xl tracking-tighter text-[var(--color-card-foreground)]">
             {rounded}
           </motion.span>
           <p className="text-lg font-medium" style={{ color: "var(--color-primary)" }}>

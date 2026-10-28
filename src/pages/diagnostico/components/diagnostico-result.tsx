@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { motion } from "motion/react";
 import { Icon } from "@/components/wizard/icon";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { ScoreRadialCard } from "@/components/ui/score-radial-card";
 import { ProfileForm } from "./profile-form";
 import { TestimonialsSection } from "./testimonials-section";
@@ -9,6 +8,9 @@ import { getDimensionTierLabel, type FitResult, type ScoreResult, type Tier, typ
 import type { LeadData } from "./lead-form";
 
 const CALENDLY_URL = "https://calendly.com/etrevino-axisconsultoresmx/30min";
+// Número de WhatsApp para el botón secundario (formato internacional sin "+").
+// Tomado del teléfono de la cuenta de Google Ads — confirmar/ajustar si es otro.
+const WHATSAPP_NUMBER = "528120349991";
 
 interface DiagnosticoResultProps {
   tier: Tier;
@@ -46,7 +48,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         nombre: lead.nombre,
-        empresa: lead.empresa,
+        empresa: lead.empresa ?? "",
         telefono: lead.telefono,
         email: lead.email,
         scorePercent: score.percent,
@@ -59,16 +61,44 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tier.id, score.percent, score.weakest.dimension.id]);
 
-  const calendlyHref = `${CALENDLY_URL}?name=${encodeURIComponent(lead.nombre)}&email=${encodeURIComponent(lead.email)}`;
+  const calendlySrc = useMemo(() => {
+    const params = new URLSearchParams({
+      embed_domain: window.location.hostname,
+      embed_type: "Inline",
+      hide_gdpr_banner: "1",
+      name: lead.nombre,
+      email: lead.email,
+      a1: lead.telefono,
+    });
+    return `${CALENDLY_URL}?${params.toString()}`;
+  }, [lead.nombre, lead.email, lead.telefono]);
+
+  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    `Hola, soy ${lead.nombre}. Hice el diagnóstico de Axis Consultores y quiero agendar una sesión.`,
+  )}`;
+
+  // Reserva dentro de la misma página: Calendly avisa por postMessage cuando se agenda.
+  useEffect(() => {
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== "https://calendly.com") return;
+      const type = (e.data as { event?: string } | null)?.event;
+      if (type === "calendly.event_scheduled") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "calendly_agendado", diagnostico_tier: tier.id });
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [tier.id]);
   const weakestInsight = score.weakest.dimension.insights[score.weakest.points];
   const strongestInsight =
     score.strongest.points >= 2 && score.strongest.dimension.id !== score.weakest.dimension.id
       ? score.strongest.dimension.insights[score.strongest.points]
       : null;
 
-  const trackCalendlyClick = () => {
+  const trackWhatsappClick = () => {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: "calendly_click", diagnostico_tier: tier.id });
+    window.dataLayer.push({ event: "whatsapp_click", diagnostico_tier: tier.id });
   };
 
   return (
@@ -79,7 +109,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
       className="mx-auto flex max-w-2xl flex-col py-6"
     >
       <ScoreRadialCard
-        eyebrow={`Diagnóstico para ${lead.empresa}`}
+        eyebrow={`Diagnóstico para ${lead.empresa || lead.nombre}`}
         title={tier.title}
         value={score.percent}
         status={TIER_STATUS[tier.id]}
@@ -87,6 +117,34 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
         icon={<Icon name={TIER_ICON[tier.id]} className="text-[20px]" />}
         description={tier.description}
       />
+
+      <div className="axis-card mt-4 p-5 sm:p-6">
+        <h3 className="font-heading text-xl font-bold tracking-[-0.02em] text-[#021f74]">
+          Agenda tu sesión de 30 minutos, sin costo
+        </h3>
+        <p className="mt-1 text-[15px] text-[#2e384c]">
+          Revisamos tu {score.weakest.dimension.label.toLowerCase()} a fondo. Elige día y hora aquí mismo.
+        </p>
+        <iframe
+          title="Agendar sesión con Axis Consultores"
+          src={calendlySrc}
+          className="mt-4 w-full rounded-[12px] border-0"
+          style={{ height: 700 }}
+          loading="lazy"
+        />
+        <p className="mt-3 text-center text-sm text-[#2e384c]">
+          ¿Prefieres que te escribamos?{" "}
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={trackWhatsappClick}
+            className="font-semibold text-[#021f74] underline underline-offset-4"
+          >
+            Escríbenos por WhatsApp
+          </a>
+        </p>
+      </div>
 
       <div
         className="mt-4 axis-card p-7 sm:p-8"
@@ -143,21 +201,11 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
         </div>
       )}
 
-      <div className="mt-8 flex flex-col items-center gap-3 text-center">
-        <a href={calendlyHref} target="_blank" rel="noopener noreferrer" onClick={trackCalendlyClick}>
-          <ShimmerButton>
-            <Icon name="calendar_month" className="text-[20px]" />
-            {tier.ctaHelper}
-          </ShimmerButton>
-        </a>
-        <p className="text-sm text-[#2e384c]">
-          30 minutos, sin costo — revisamos tu {score.weakest.dimension.label.toLowerCase()} a fondo.
-        </p>
-
+      <div className="mt-6 flex justify-center">
         <button
           type="button"
           onClick={onRestart}
-          className="mt-4 text-sm text-[#2e384c]/70 underline-offset-4 hover:underline"
+          className="text-sm text-[#2e384c]/70 underline-offset-4 hover:underline"
         >
           Volver a empezar
         </button>

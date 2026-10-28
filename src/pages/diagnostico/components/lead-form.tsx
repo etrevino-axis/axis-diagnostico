@@ -7,7 +7,7 @@ import { Icon } from "@/components/wizard/icon";
 
 export interface LeadData {
   nombre: string;
-  empresa: string;
+  empresa?: string;
   telefono: string;
   email: string;
 }
@@ -27,13 +27,12 @@ interface LeadFormProps {
  */
 export function LeadForm({ onSubmit }: LeadFormProps) {
   const [nombre, setNombre] = useState("");
-  const [empresa, setEmpresa] = useState("");
   const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit({ nombre, empresa, telefono, email });
+    onSubmit({ nombre, telefono, email });
   };
 
   return (
@@ -67,18 +66,6 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
             placeholder="Tu nombre completo"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="empresa" className="text-[var(--color-ink)]">
-            Empresa o actividad
-          </Label>
-          <Input
-            id="empresa"
-            required
-            value={empresa}
-            onChange={(e) => setEmpresa(e.target.value)}
-            placeholder="Nombre de tu empresa"
           />
         </div>
         <div className="space-y-2">
