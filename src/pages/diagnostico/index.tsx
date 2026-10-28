@@ -5,7 +5,7 @@ import { DiagnosticoToolbar } from "./components/diagnostico-toolbar";
 import { OptionCard } from "./components/option-card";
 import { LeadForm, type LeadData } from "./components/lead-form";
 import { DiagnosticoResult } from "./components/diagnostico-result";
-import { QUESTIONS, computeScore, getTier, type Answers } from "@/lib/diagnostico";
+import { FLOW_QUESTIONS, computeScore, classifyFit, getTier, type Answers } from "@/lib/diagnostico";
 
 type View = "quiz" | "lead" | "results";
 
@@ -15,7 +15,7 @@ declare global {
   }
 }
 
-const STEP_COUNT = QUESTIONS.length;
+const STEP_COUNT = FLOW_QUESTIONS.length;
 // Pausa breve para que se vea la selección marcada antes de saltar al
 // siguiente paso — suficiente para dar feedback, poco para sentirse lento.
 const AUTO_ADVANCE_DELAY_MS = 320;
@@ -42,7 +42,7 @@ export default function Diagnostico() {
 
   useEffect(() => () => clearTimeout(advanceTimeout.current), []);
 
-  const question = QUESTIONS[activeStep];
+  const question = FLOW_QUESTIONS[activeStep];
   const isLast = activeStep === STEP_COUNT - 1;
 
   const goNext = useCallback(() => {
@@ -58,10 +58,12 @@ export default function Diagnostico() {
   const handleSelect = useCallback(
     (optionId: string) => {
       setAnswers((prev) => ({ ...prev, [question.id]: optionId }));
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: `diagnostico_paso_${activeStep + 1}`, pregunta: question.id });
       clearTimeout(advanceTimeout.current);
       advanceTimeout.current = setTimeout(goNext, AUTO_ADVANCE_DELAY_MS);
     },
-    [question, goNext],
+    [question, activeStep, goNext],
   );
 
   const handleBack = useCallback(() => {
@@ -92,6 +94,7 @@ export default function Diagnostico() {
 
   const score = computeScore(answers);
   const tier = getTier(score.percent);
+  const fit = classifyFit(answers);
 
   return (
     <div className="calc-canvas min-h-screen">
@@ -128,7 +131,7 @@ export default function Diagnostico() {
         {view === "lead" && <LeadForm onSubmit={handleLeadSubmit} />}
 
         {view === "results" && lead && (
-          <DiagnosticoResult tier={tier} score={score} lead={lead} onRestart={handleRestart} />
+          <DiagnosticoResult tier={tier} score={score} fit={fit} lead={lead} onRestart={handleRestart} />
         )}
       </main>
 

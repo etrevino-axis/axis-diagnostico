@@ -63,7 +63,7 @@ export function StepScreen({
       </motion.div>
 
       <motion.p variants={item} className="mt-1.5 text-xs font-medium text-[#2e384c]/60">
-        Paso {index + 1} de {total}
+        Pregunta {index + 1} de {total} · 2 minutos
       </motion.p>
 
       <motion.h2 variants={item} className="font-heading mt-3 text-[24px] font-bold leading-[1.2] tracking-[-0.02em] text-[#021f74] sm:text-[30px]">

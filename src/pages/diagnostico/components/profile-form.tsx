@@ -81,10 +81,10 @@ export function ProfileForm({ lead }: ProfileFormProps) {
               Opcional — 30 segundos
             </p>
             <h3 className="font-heading mt-2 text-xl text-[var(--color-ink)]">
-              Ayúdenos a preparar su sesión
+              Ayúdanos a preparar tu sesión
             </h3>
             <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-gray-support)]">
-              5 preguntas rápidas para que, al revisar su diagnóstico antes de la llamada, ya sepamos con
+              3 preguntas rápidas para que, al revisar tu diagnóstico antes de la llamada, ya sepamos con
               quién estamos hablando.
             </p>
             <div className="mt-5 flex gap-3">
@@ -146,7 +146,7 @@ export function ProfileForm({ lead }: ProfileFormProps) {
           <motion.div key="done" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
             <p className="font-heading text-lg text-[var(--color-ink)]">Gracias, {lead.nombre.split(" ")[0]}.</p>
             <p className="mt-2 text-[15px] text-[var(--color-gray-support)]">
-              Ya tenemos el contexto que necesitábamos para su sesión.
+              Ya tenemos el contexto que necesitábamos para tu sesión.
             </p>
           </motion.div>
         )}
