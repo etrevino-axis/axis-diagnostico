@@ -125,6 +125,18 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
         <p className="mt-1 text-[15px] text-[#2e384c]">
           Revisamos tu {score.weakest.dimension.label.toLowerCase()} a fondo. Elige día y hora aquí mismo.
         </p>
+        <ul className="mt-4 space-y-2.5 text-[15px] text-[#2e384c]">
+          {[
+            "Revisamos tu situación fiscal actual y qué está pendiente con el SAT.",
+            "Te decimos qué necesitas ordenar primero y qué puede esperar.",
+            "Sales con un plan claro y, si te sirve, con una propuesta sin compromiso.",
+          ].map((point) => (
+            <li key={point} className="flex items-start gap-2.5">
+              <Icon name="check_circle" className="mt-0.5 text-[18px] text-[#021f74]" />
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
         <iframe
           title="Agendar sesión con Axis Consultores"
           src={calendlySrc}
