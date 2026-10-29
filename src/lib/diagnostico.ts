@@ -109,7 +109,7 @@ export const DIMENSIONS: DimensionMeta[] = [
       "Esa respuesta describe, con honestidad, algo que te está costando dinero cada mes — casi siempre hay deducciones o estructuras fiscales legítimas sin aprovechar, y no preguntarlo no hace que dejen de aplicar.",
       "Cumplir sin optimizar es la posición por default de la mayoría de los negocios — y también la más fácil de mejorar, porque no requiere cambiar cómo opera, solo cómo se declara.",
       "Una eficiencia fiscal que no se revisa periódicamente se vuelve obsoleta sin que nadie lo note — la ley cambia, y una estructura que aplicaba hace dos años puede ya no ser la óptima hoy.",
-      "Una revisión preventiva y regular es, literalmente, la definición de una estrategia fiscal bien llevada — muy pocos negocios de tu tamaño llegan a este nivel.",
+      "Una revisión preventiva y regular es, literalmente, la definición de una estrategia fiscal bien llevada — muy pocos casos como el tuyo llegan a este nivel.",
     ],
   },
   {
@@ -118,10 +118,10 @@ export const DIMENSIONS: DimensionMeta[] = [
     icon: "monitoring",
     priority: 2,
     insights: [
-      "No tener certeza de tus números actuales no es un tema menor: es la razón más común por la que una decisión que parecía correcta termina complicando la operación.",
+      "No tener certeza de tus números actuales no es un tema menor: es la razón más común por la que una decisión que parecía correcta termina complicando tu situación.",
       "Tener la información pero sin actualizar o integrar equivale a no tenerla cuando más se necesita — el dato existe, pero llega tarde para decidir con él.",
       "Depender de revisar o pedir la información antes de poder usarla introduce un retraso que, en el momento de una decisión importante, puede costar la oportunidad misma.",
-      "Tener información actualizada y accesible de inmediato es la base sobre la que se construye cualquier decisión financiera sólida — el punto de partida menos común entre negocios de tu tamaño.",
+      "Tener información actualizada y accesible de inmediato es la base sobre la que se construye cualquier decisión financiera sólida — el punto de partida menos común entre casos como el tuyo.",
     ],
   },
   {
@@ -133,7 +133,7 @@ export const DIMENSIONS: DimensionMeta[] = [
       "Guiarse por el saldo bancario es la señal más clara de que no hay control real del gasto — el saldo dice cuánto dinero hay hoy, no si la operación es rentable.",
       "Conocer los gastos principales sin una visión completa deja fuera, casi siempre, los costos pequeños y recurrentes que en conjunto erosionan la rentabilidad sin que se note mes a mes.",
       "Una idea aproximada, sin monitoreo regular, es exactamente el punto donde un gasto que dejó de tener sentido sigue saliendo durante meses antes de que alguien lo note.",
-      "Saber exactamente en qué se utiliza el dinero es la diferencia entre administrar una operación y simplemente sobrevivirla — la mayoría de los negocios de tu tamaño no llega a este nivel.",
+      "Saber exactamente en qué se utiliza el dinero es la diferencia entre administrar tu dinero y simplemente sobrevivirlo — la mayoría de los casos como el tuyo no llega a este nivel.",
     ],
   },
   {
@@ -145,7 +145,7 @@ export const DIMENSIONS: DimensionMeta[] = [
       "Decidir sin números listos significa que las decisiones más importantes del negocio se toman con la misma certeza que un volado — funciona hasta que la decisión equivocada cuesta cara.",
       "Una idea sin cálculos periódicos es suficiente para el día a día, pero se queda corta justo en el momento en que una decisión grande requiere precisión, no intuición.",
       "Conocer las cifras principales cubre gran parte del camino — el siguiente paso es tener metas definidas sobre esas cifras, no solo visibilidad de ellas.",
-      "Tener números y metas definidos es lo que separa una operación que reacciona de una que dirige tu propio crecimiento.",
+      "Tener números y metas definidos es lo que separa a quien reacciona de quien dirige su propio crecimiento.",
     ],
   },
   {
@@ -157,7 +157,7 @@ export const DIMENSIONS: DimensionMeta[] = [
       "No saber qué documentación se necesitaría presentar ante una revisión, crédito o socio potencial es el tipo de brecha que normalmente se descubre en el peor momento posible.",
       "Tener que revisar varias cosas antes de poder responder es manejable si hay tiempo — pero la mayoría de estas situaciones no avisan con semanas de anticipación.",
       "Poder reunir la documentación, aunque tome tiempo, es una posición razonable — el siguiente objetivo es reducir ese tiempo a horas, no días.",
-      "Tener información y documentación actualizada en todo momento es la señal más clara de una operación financiera madura.",
+      "Tener información y documentación actualizada en todo momento es la señal más clara de una situación financiera madura.",
     ],
   },
 ];
@@ -239,7 +239,7 @@ export const TIERS: Tier[] = [
     stamp: "ZONA DE RIESGO",
     title: "Encontramos al menos un punto de exposición real",
     description:
-      "Este diagnóstico identificó una o más áreas donde tu operación está expuesta a un riesgo concreto — no teórico, uno que ya se manifestó o está a punto de hacerlo. Abajo desglosamos exactamente cuál es y qué significa.",
+      "Este diagnóstico identificó una o más áreas donde tu situación está expuesta a un riesgo concreto — no teórico, uno que ya se manifestó o está a punto de hacerlo. Abajo desglosamos exactamente cuál es y qué significa.",
     ctaHelper: "Agenda una cita con un consultor",
     min: 0,
     max: 40,
@@ -249,17 +249,17 @@ export const TIERS: Tier[] = [
     stamp: "BASE SÓLIDA, PUNTOS CIEGOS",
     title: "Tienes control donde se ve — no donde no se ve",
     description:
-      "El manejo general de tu operación es razonable, pero hay al menos un punto ciego que cuesta margen o expone sin que se note todavía.",
+      "El manejo general de tu situación es razonable, pero hay al menos un punto ciego que cuesta dinero o te expone sin que se note todavía.",
     ctaHelper: "Agenda una cita con un consultor",
     min: 41,
     max: 70,
   },
   {
     id: "optimizado",
-    stamp: "OPERACIÓN FINANCIERA MADURA",
+    stamp: "SITUACIÓN FINANCIERA MADURA",
     title: "El siguiente nivel ya no es orden, es estrategia",
     description:
-      "Tu operación está mejor administrada que la mayoría de los negocios de tu tamaño. La siguiente conversación no es sobre poner orden — es sobre usar esa claridad para crecer más rápido y con menos riesgo.",
+      "Tu situación está mejor atendida que la de la mayoría de los casos como el tuyo. La siguiente conversación no es sobre poner orden — es sobre usar esa claridad para crecer más rápido y con menos riesgo.",
     ctaHelper: "Agenda una sesión estratégica",
     min: 71,
     max: 100,
@@ -297,40 +297,40 @@ export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
     question: "¿Cuál de estas situaciones se parece más a la tuya hoy?",
     helper: "Elige la que más se acerque; no hay respuesta incorrecta.",
     options: [
-      { id: "d_atrasada", label: "Tengo meses de contabilidad sin hacer.", fit: "base" },
-      { id: "d_sin_contador", label: "Mi contador anterior dejó de contestar o se fue.", fit: "base" },
-      { id: "d_nuevo", label: "Acabo de abrir mi negocio o darme de alta.", fit: "base" },
-      { id: "d_yo_mismo", label: "Llevo mi contabilidad yo mismo y no me da el tiempo.", fit: "base" },
-      { id: "d_revisar", label: "Mi contabilidad está en orden; quiero revisarla.", fit: "base" },
+      { id: "d_empezar", label: "Voy a empezar una actividad (rentar un inmueble, abrir un negocio, empezar a facturar) y quiero hacerlo bien desde el inicio.", fit: "base" },
+      { id: "d_atrasada", label: "Ya tengo actividad, pero no llevo contabilidad o la tengo atrasada.", fit: "base" },
+      { id: "d_atencion", label: "Tengo contador, pero siento que no me da la atención que necesito o no me explica.", fit: "base" },
+      { id: "d_dudas", label: "Llevo mi contabilidad yo mismo, pero no estoy seguro de estar haciéndola bien.", fit: "base" },
+      { id: "d_revisar", label: "Mi contabilidad está en orden; quiero una segunda revisión.", fit: "base" },
     ],
   },
   {
-    id: "q_tiempo",
-    title: "Tu tiempo",
-    question: "¿Cuánto tiempo a la semana te toman tus facturas, impuestos y papeles del negocio?",
-    helper: "Incluye buscar documentos, capturar facturas y resolver dudas con el SAT o el banco.",
+    id: "q_comodidad",
+    title: "Tus obligaciones",
+    question: "¿Qué tan cómodo te sientes llevando tú mismo tus declaraciones y obligaciones con el SAT?",
+    helper: "Pensando en declaraciones, facturas y cualquier trámite que te corresponda.",
     options: [
-      { id: "t_nada", label: "Casi nada: lo tengo bajo control.", fit: "base" },
-      { id: "t_poco", label: "Una o dos horas.", fit: "base" },
-      { id: "t_varias", label: "Varias horas, y me quita tiempo de lo importante.", fit: "base" },
-      { id: "t_acumula", label: "No lo sé: lo voy dejando y se acumula.", fit: "base" },
+      { id: "c_domino", label: "Lo domino y lo hago sin problema.", fit: "base" },
+      { id: "c_dudas", label: "Lo hago, pero con dudas.", fit: "base" },
+      { id: "c_prefiero", label: "Prefiero que lo haga alguien que sepa.", fit: "base" },
+      { id: "c_inicio", label: "No sé por dónde empezar.", fit: "base" },
     ],
   },
   {
     id: "q_facturas",
-    title: "Tu negocio",
-    question: "¿Cuántas facturas emite tu negocio al mes, aproximadamente?",
-    helper: "Un cálculo aproximado es suficiente; nos ayuda a dimensionar el trabajo contable.",
+    title: "Tu actividad",
+    question: "¿Cuántas facturas emites al mes, aproximadamente?",
+    helper: "Si apenas empiezas o eres persona física, cuenta las que esperas emitir (por ejemplo, recibos de renta).",
     options: [
-      { id: "f_10", label: "10 o menos.", fit: "base" },
+      { id: "f_ninguna", label: "Ninguna todavía: voy empezando.", fit: "base" },
+      { id: "f_10", label: "De 1 a 10.", fit: "base" },
       { id: "f_30", label: "De 11 a 30.", fit: "gris" },
-      { id: "f_100", label: "De 31 a 100.", fit: "fuera" },
-      { id: "f_mas", label: "Más de 100.", fit: "fuera" },
+      { id: "f_mas", label: "Más de 30.", fit: "fuera" },
     ],
   },
   {
     id: "q_empleados",
-    title: "Tu negocio",
+    title: "Tu actividad",
     question: "¿Cuántas personas tienes contratadas en nómina?",
     helper: "Sin contarte a ti, si trabajas por tu cuenta.",
     options: [
@@ -356,7 +356,7 @@ const byId = new Map<string, FlowQuestion>(
 );
 
 /** Orden final del flujo (6 pasos): detonante, tiempo, cumplimiento, información, facturas, nómina. */
-export const FLOW_ORDER = ["q_detonante", "q_tiempo", "cumplimiento_fiscal", "informacion_financiera", "q_facturas", "q_empleados"];
+export const FLOW_ORDER = ["q_detonante", "q_comodidad", "cumplimiento_fiscal", "informacion_financiera", "q_facturas", "q_empleados"];
 export const FLOW_QUESTIONS: FlowQuestion[] = FLOW_ORDER.map((id) => byId.get(id)!);
 
 export type FitResult = { fit: Fit; label: string; details: Record<string, string> };

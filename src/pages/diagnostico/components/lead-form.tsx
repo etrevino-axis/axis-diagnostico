@@ -91,7 +91,7 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="tu@empresa.com"
+            placeholder="tu@correo.com"
           />
         </div>
       </div>

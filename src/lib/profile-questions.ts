@@ -12,11 +12,11 @@ export interface ProfileQuestion {
 export const PROFILE_QUESTIONS: ProfileQuestion[] = [
   {
     id: "rol",
-    question: "¿Cuál es tu rol en la empresa?",
+    question: "¿Cuál describe mejor tu perfil?",
     options: [
-      { id: "dueno", label: "Dueño o Director General" },
-      { id: "financiero", label: "Director o Gerente Financiero" },
-      { id: "contador_interno", label: "Contador interno" },
+      { id: "persona_fisica", label: "Persona física (con o sin actividad empresarial)" },
+      { id: "dueno", label: "Dueño o director de una empresa" },
+      { id: "financiero", label: "Responsable de finanzas o administración" },
       { id: "otro", label: "Otro" },
     ],
   },
