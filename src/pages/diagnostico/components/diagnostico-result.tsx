@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Icon } from "@/components/wizard/icon";
 import { ScoreRadialCard } from "@/components/ui/score-radial-card";
 import { ProfileForm } from "./profile-form";
-import { TestimonialsSection } from "./testimonials-section";
+import { SolutionsSection } from "./solutions-section";
 import { getDimensionTierLabel, type FitResult, type ScoreResult, type Tier, type TierId } from "@/lib/diagnostico";
 import type { LeadData } from "./lead-form";
 
@@ -225,7 +225,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
 
       <ProfileForm lead={lead} />
 
-      <TestimonialsSection />
+      <SolutionsSection />
     </motion.div>
   );
 }
