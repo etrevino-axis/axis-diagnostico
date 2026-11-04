@@ -94,10 +94,10 @@ export const DIMENSIONS: DimensionMeta[] = [
     icon: "gavel",
     priority: 0,
     insights: [
-      "Saber que existen situaciones pendientes y no haberlas resuelto es, de las áreas de este diagnóstico, la que representa mayor riesgo inmediato — cada mes que pasa sin atenderlas, la exposición ante el SAT se acumula.",
-      "Tener dudas o pendientes sin resolver rara vez se queda como está — normalmente crece hasta convertirse en un requerimiento formal en el momento menos oportuno.",
-      "Creer que está en regla sin haberlo verificado recientemente es una posición común — y también la más fácil de corregir con una revisión puntual antes de que se convierta en un problema real.",
-      "Tener la certeza, verificada, de que tu situación fiscal está en regla es la base sobre la que se puede construir estrategia — no solo cumplimiento.",
+      "Si sabes que tienes pendientes con el SAT, conviene atenderlos pronto: con el tiempo se acumulan recargos y multas, y resolverlos cuesta más. La buena noticia es que tienen solución, y entre más pronto se revisen, más fácil es ponerlos en orden.",
+      "Las dudas o pendientes fiscales rara vez se resuelven solos: lo más común es que crezcan hasta convertirse en un requerimiento del SAT. Revisarlos a tiempo te evita sorpresas.",
+      "Es normal asumir que todo está en regla sin haberlo revisado recientemente. Una revisión puntual te da certeza y te permite corregir a tiempo cualquier detalle.",
+      "Tienes certeza de que tu situación fiscal está en regla. Esa es la mejor base para tomar decisiones con tranquilidad, no solo para cumplir.",
     ],
   },
   {
@@ -118,10 +118,10 @@ export const DIMENSIONS: DimensionMeta[] = [
     icon: "monitoring",
     priority: 2,
     insights: [
-      "No tener certeza de tus números actuales no es un tema menor: es la razón más común por la que una decisión que parecía correcta termina complicando tu situación.",
-      "Tener la información pero sin actualizar o integrar equivale a no tenerla cuando más se necesita — el dato existe, pero llega tarde para decidir con él.",
-      "Depender de revisar o pedir la información antes de poder usarla introduce un retraso que, en el momento de una decisión importante, puede costar la oportunidad misma.",
-      "Tener información actualizada y accesible de inmediato es la base sobre la que se construye cualquier decisión financiera sólida — el punto de partida menos común entre casos como el tuyo.",
+      "Si no tienes claros tus números, es difícil decidir con confianza. Con una contabilidad al día sabrás cuánto ganas, cuánto gastas y qué impuestos te corresponden.",
+      "Tienes la información, pero dispersa o sin actualizar, y eso hace difícil usarla cuando se necesita. Ordenarla es el primer paso para decidir con datos.",
+      "Tienes tu información, pero reunirla toma tiempo. Tenerla al día y a la mano te permite responder rápido ante una decisión o un trámite.",
+      "Tu información está al día y a la mano. Es la base de cualquier buena decisión financiera, y vale la pena aprovecharla para planear.",
     ],
   },
   {
@@ -142,7 +142,7 @@ export const DIMENSIONS: DimensionMeta[] = [
     icon: "trending_up",
     priority: 4,
     insights: [
-      "Decidir sin números listos significa que las decisiones más importantes del negocio se toman con la misma certeza que un volado — funciona hasta que la decisión equivocada cuesta cara.",
+      "Decidir sin números listos significa que las decisiones más importantes del negocio se toman sin datos suficientes — funciona hasta que una decisión equivocada cuesta cara.",
       "Una idea sin cálculos periódicos es suficiente para el día a día, pero se queda corta justo en el momento en que una decisión grande requiere precisión, no intuición.",
       "Conocer las cifras principales cubre gran parte del camino — el siguiente paso es tener metas definidas sobre esas cifras, no solo visibilidad de ellas.",
       "Tener números y metas definidos es lo que separa a quien reacciona de quien dirige su propio crecimiento.",
@@ -237,9 +237,9 @@ export const TIERS: Tier[] = [
   {
     id: "riesgo",
     stamp: "ZONA DE RIESGO",
-    title: "Encontramos al menos un punto de exposición real",
+    title: "Encontramos áreas que conviene atender pronto",
     description:
-      "Este diagnóstico identificó una o más áreas donde tu situación está expuesta a un riesgo concreto — no teórico, uno que ya se manifestó o está a punto de hacerlo. Abajo desglosamos exactamente cuál es y qué significa.",
+      "Tus respuestas muestran una o más áreas donde hay riesgo ante el SAT o poca claridad en tus números. Abajo te explicamos cuál es y qué puedes hacer al respecto.",
     ctaHelper: "Agenda una cita con un consultor",
     min: 0,
     max: 40,
@@ -247,9 +247,9 @@ export const TIERS: Tier[] = [
   {
     id: "estable",
     stamp: "BASE SÓLIDA, PUNTOS CIEGOS",
-    title: "Tienes control donde se ve — no donde no se ve",
+    title: "Vas bien, pero hay puntos por revisar",
     description:
-      "El manejo general de tu situación es razonable, pero hay al menos un punto ciego que cuesta dinero o te expone sin que se note todavía.",
+      "Tu situación está razonablemente atendida, pero hay al menos un punto que conviene revisar antes de que genere costos o una observación del SAT.",
     ctaHelper: "Agenda una cita con un consultor",
     min: 41,
     max: 70,
@@ -257,9 +257,9 @@ export const TIERS: Tier[] = [
   {
     id: "optimizado",
     stamp: "SITUACIÓN FINANCIERA MADURA",
-    title: "El siguiente nivel ya no es orden, es estrategia",
+    title: "Tu situación está en buen orden",
     description:
-      "Tu situación está mejor atendida que la de la mayoría de los casos como el tuyo. La siguiente conversación no es sobre poner orden — es sobre usar esa claridad para crecer más rápido y con menos riesgo.",
+      "Tus respuestas muestran buen control. La siguiente conversación puede enfocarse en aprovechar esa claridad para planear y crecer con menos riesgo.",
     ctaHelper: "Agenda una sesión estratégica",
     min: 71,
     max: 100,
@@ -312,7 +312,7 @@ export const QUALIFICATION_QUESTIONS: QualificationQuestion[] = [
     options: [
       { id: "c_domino", label: "Lo domino y lo hago sin problema.", fit: "base" },
       { id: "c_dudas", label: "Lo hago, pero con dudas.", fit: "base" },
-      { id: "c_prefiero", label: "Prefiero que lo haga alguien que sepa.", fit: "base" },
+      { id: "c_prefiero", label: "Prefiero que lo lleve alguien con experiencia.", fit: "base" },
       { id: "c_inicio", label: "No sé por dónde empezar.", fit: "base" },
     ],
   },

@@ -84,8 +84,7 @@ export function ProfileForm({ lead }: ProfileFormProps) {
               Ayúdanos a preparar tu sesión
             </h3>
             <p className="mt-2 text-[15px] leading-relaxed text-[var(--color-gray-support)]">
-              3 preguntas rápidas para que, al revisar tu diagnóstico antes de la llamada, ya sepamos con
-              quién estamos hablando.
+              3 preguntas rápidas para que, antes de la llamada, conozcamos mejor tu caso.
             </p>
             <div className="mt-5 flex gap-3">
               <button

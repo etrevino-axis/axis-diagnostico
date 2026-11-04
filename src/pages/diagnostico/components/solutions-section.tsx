@@ -6,7 +6,7 @@ const solutions = [
   {
     icon: "receipt_long",
     title: "Contabilidad al día",
-    text: "Registramos tus ingresos y gastos cada mes para que siempre sepas dónde estás parado.",
+    text: "Registramos tus ingresos y gastos cada mes para que siempre sepas cómo está tu situación.",
   },
   {
     icon: "verified_user",
@@ -21,7 +21,7 @@ const solutions = [
   {
     icon: "folder_open",
     title: "Regularización de pendientes",
-    text: "Si traes meses atrasados o información sin ordenar, la ponemos al corriente con un plan claro.",
+    text: "Si tienes meses atrasados o información sin ordenar, la ponemos al corriente con un plan claro.",
   },
   {
     icon: "insights",

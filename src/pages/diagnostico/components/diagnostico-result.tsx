@@ -145,7 +145,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
           loading="lazy"
         />
         <p className="mt-3 text-center text-sm text-[#2e384c]">
-          ¿Prefieres que te escribamos?{" "}
+          ¿Prefieres escribirnos?{" "}
           <a
             href={whatsappHref}
             target="_blank"
@@ -153,7 +153,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
             onClick={trackWhatsappClick}
             className="font-semibold text-[#021f74] underline underline-offset-4"
           >
-            Escríbenos por WhatsApp
+            Hazlo por WhatsApp
           </a>
         </p>
       </div>
@@ -163,7 +163,7 @@ export function DiagnosticoResult({ tier, score, fit, lead, onRestart }: Diagnos
         style={{ backgroundColor: "var(--color-card)" }}
       >
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gray-support)]">
-          Tu radiografía financiera
+          Tu resumen por área
         </p>
         <div className="mt-5 space-y-5">
           {score.byDimension.map(({ dimension, points }) => (

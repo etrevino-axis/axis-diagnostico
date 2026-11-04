@@ -50,7 +50,7 @@ export function LeadForm({ onSubmit }: LeadFormProps) {
         Tu diagnóstico está listo.
       </h2>
       <p className="mt-3 text-[15px] text-[#2e384c] sm:text-base">
-        Dinos a dónde enviarlo y con quién estamos hablando.
+        Déjanos tus datos para mostrarte tu resultado y, si lo deseas, agendar tu sesión sin costo.
       </p>
 
       <div
