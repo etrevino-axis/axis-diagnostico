@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ApplicationLayout from "./layouts/application-layout";
 import Diagnostico from "./pages/diagnostico";
+import Landing from "./pages/landing";
 import NotFound from "./pages/not-found";
 import { ScrollToTop } from "./components/scroll-to-top";
 
@@ -13,6 +14,7 @@ const App = () => (
     <Routes>
       <Route element={<ApplicationLayout />}>
         <Route path="/" element={<Diagnostico />} />
+        <Route path="/landing" element={<Landing />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
