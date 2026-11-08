@@ -72,6 +72,13 @@ const ANGULOS = [
   { q: "¿Tienes contador, pero sientes que no te explica?", sub: "Una segunda opinión sin costo, con alguien que te dice qué se hace y por qué.", giro: GIROS[8] },
 ];
 
+const U = "https://images.unsplash.com/";
+const FOTOS = {
+  skyline: { src: `${U}photo-1783614221259-107cb8c396be?auto=format&fit=crop&w=1800&q=70`, alt: "Rascacielos de Monterrey con las montañas al fondo" },
+  escritorio: { src: `${U}photo-1762831063004-bbd3ea38ba3a?auto=format&fit=crop&w=1200&q=70`, alt: "Escritorio con calculadora, cuaderno y lápiz" },
+  calculadora: { src: `${U}photo-1762318986860-a7b18dd0da02?auto=format&fit=crop&w=1200&q=70`, alt: "Calculadora, anteojos y bolígrafos sobre un escritorio blanco" },
+};
+
 const TRUST = [
   { icon: "location_on", title: "En San Pedro Garza García", text: "Oficina en Fuentes del Valle." },
   { icon: "groups", title: "Atención de los socios", text: "Hablas con quienes llevan tu caso." },
@@ -90,11 +97,6 @@ const SESION = [
   { n: "1", title: "Entendemos tu operación", text: "Nos cuentas a qué te dedicas, cómo llevas hoy tus números y qué te preocupa." },
   { n: "2", title: "Revisamos tu situación", text: "Vemos cómo registras ingresos, gastos y obligaciones, y dónde hay puntos por atender." },
   { n: "3", title: "Te decimos qué sigue", text: "Si podemos ayudarte, recibes una propuesta por escrito. Si no te conviene, también te lo decimos." },
-];
-
-const SOCIOS = [
-  { nombre: "Eric Treviño", rol: "Socio", iniciales: "ET" },
-  { nombre: "Bernardo [apellido]", rol: "Socio", iniciales: "B" },
 ];
 
 const STEPS = [
@@ -303,6 +305,15 @@ export default function Landing() {
           </div>
         </section>
 
+        <section className="py-6">
+          <div className="relative overflow-hidden rounded-[12px]" style={{ backgroundColor: "#e8edf8" }}>
+            <img src={FOTOS.skyline.src} alt={FOTOS.skyline.alt} loading="lazy" className="h-[220px] w-full object-cover sm:h-[300px]" />
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7" style={{ background: "rgba(2,31,116,0.82)" }}>
+              <p className="text-sm font-semibold text-white sm:text-base">Contabilidad y cumplimiento fiscal para negocios y personas de Monterrey y su área metropolitana.</p>
+            </div>
+          </div>
+        </section>
+
         <section className="py-10">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Para quién trabajamos</h2>
           <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Negocios y personas de Monterrey y su área metropolitana que quieren tener su contabilidad en orden y con alguien que les explique.</p>
@@ -324,8 +335,13 @@ export default function Landing() {
         </section>
 
         <section className="py-10">
-          <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Qué pasa en tu primera sesión</h2>
-          <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Dura de 20 a 30 minutos, no tiene costo y no te compromete a nada.</p>
+          <div className="grid gap-6 md:grid-cols-[1fr_320px] md:items-end">
+            <div>
+              <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Qué pasa en tu primera sesión</h2>
+              <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Dura de 20 a 30 minutos, no tiene costo y no te compromete a nada.</p>
+            </div>
+            <img src={FOTOS.calculadora.src} alt={FOTOS.calculadora.alt} loading="lazy" className="hidden h-28 w-full rounded-[12px] object-cover md:block" />
+          </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {SESION.map((s) => (
               <div key={s.n} className="flex gap-4 rounded-[12px] border bg-white p-5" style={{ borderColor: "#e8edf8" }}>
@@ -353,30 +369,16 @@ export default function Landing() {
         </section>
 
         <section className="py-10">
-          <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Quiénes somos</h2>
-          <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Axis Consultores es un despacho contable y fiscal en San Pedro Garza García. Trabajamos de forma consultiva: te explicamos qué hacemos y por qué.</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {SOCIOS.map((p) => (
-              <div key={p.nombre} className="flex items-center gap-4 rounded-[12px] border bg-white p-5" style={{ borderColor: "#e8edf8" }}>
-                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-lg font-bold text-[#021f74]" style={{ backgroundColor: "#e8edf8" }}>{p.iniciales}</span>
-                <div>
-                  <p className="font-semibold text-[#021f74]">{p.nombre}</p>
-                  <p className="text-sm text-[#2e384c]">{p.rol}, Axis Consultores</p>
-                  <p className="mt-1 text-xs text-[#2e384c]">[Foto, formación y experiencia por completar]</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="py-10">
-          <div className="rounded-[12px] border bg-white p-7 sm:p-8" style={{ borderColor: "#e8edf8" }}>
+          <div className="grid overflow-hidden rounded-[12px] border bg-white md:grid-cols-[1fr_340px]" style={{ borderColor: "#e8edf8" }}>
+           <div className="p-7 sm:p-8">
             <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Tu información, protegida</h2>
             <ul className="mt-4 space-y-3 text-[15px] leading-relaxed text-[#2e384c]">
               <li className="flex gap-3"><Icon name="check" className="mt-1 shrink-0 text-[16px] text-[#021f74]" /><span>Firmamos un convenio de confidencialidad antes de recibir tu documentación.</span></li>
               <li className="flex gap-3"><Icon name="check" className="mt-1 shrink-0 text-[16px] text-[#021f74]" /><span>Tus archivos viven en un portal privado de acceso restringido, no en cadenas de correo ni en chats.</span></li>
               <li className="flex gap-3"><Icon name="check" className="mt-1 shrink-0 text-[16px] text-[#021f74]" /><span>Solo pedimos tu e.firma cuando ya aceptaste la propuesta y vamos a trabajar tu contabilidad.</span></li>
             </ul>
+           </div>
+           <img src={FOTOS.escritorio.src} alt={FOTOS.escritorio.alt} loading="lazy" className="h-48 w-full object-cover md:h-full" />
           </div>
         </section>
 
@@ -444,6 +446,7 @@ export default function Landing() {
 
       <footer className="border-t px-6 py-8 text-center text-sm text-[#2e384c]" style={{ borderColor: "#e8edf8" }}>
         Axis Consultores · Fuentes del Valle, Sector 7, San Pedro Garza García, N.L.
+        <p className="mt-2 text-xs">Fotografías: Unsplash.</p>
       </footer>
     </div>
   );
