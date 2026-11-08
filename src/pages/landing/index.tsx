@@ -62,7 +62,7 @@ export default function Landing() {
   const [pausa, setPausa] = useState(false);
   const reducirMovimiento = useReducedMotion();
 
-  // Rota el titular cada 5 s; se detiene al pasar el cursor o si el usuario prefiere menos movimiento.
+  // Rota el titular cada 3.5 s; se detiene al pasar el cursor o si el usuario prefiere menos movimiento.
   useEffect(() => {
     if (reducirMovimiento || pausa) return;
     const id = setInterval(() => setAngulo((i) => (i + 1) % ANGULOS.length), 5000);
