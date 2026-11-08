@@ -1,4 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -10,9 +11,26 @@ const CALENDLY_URL = "https://calendly.com/etrevino-axisconsultoresmx/30min";
 
 const GIROS = [
   "Lote de autos / compra-venta de autos",
+  "Arrendamiento de inmuebles",
   "Persona física con actividad empresarial",
+  "Honorarios / RESICO",
+  "Comercio o tienda",
+  "Servicios profesionales",
+  "Inmobiliaria o construcción",
+  "Manufactura o industria",
   "Empresa (persona moral)",
+  "Voy a iniciar una actividad",
   "Otro",
+];
+
+// Cada pregunta se muestra unos segundos en el titular. Sin promesas de ahorro.
+const ANGULOS = [
+  { q: "¿Compras autos a particulares y no sabes cómo registrarlos bien?", sub: "Revisamos contigo cómo manejas hoy las compras a particulares que no entregan factura.", giro: GIROS[0] },
+  { q: "¿Rentas inmuebles y no estás seguro de estar declarando bien?", sub: "Te decimos qué obligaciones aplican a tus rentas y las dejamos en orden.", giro: GIROS[1] },
+  { q: "¿Tu empresa crece y la contabilidad ya no te alcanza?", sub: "Ordenamos tus números para que tomes decisiones con información clara.", giro: GIROS[8] },
+  { q: "¿Tienes empleados y la nómina y el IMSS te quitan tiempo?", sub: "Nos encargamos del cálculo, el timbrado y las cuotas, y tú te enfocas en tu negocio.", giro: GIROS[8] },
+  { q: "¿Tu contabilidad va atrasada y no sabes por dónde empezar?", sub: "Te ayudamos a ponerla al corriente con un plan claro, paso a paso.", giro: GIROS[2] },
+  { q: "¿Tienes contador, pero sientes que no te explica?", sub: "Una segunda opinión sin costo, con alguien que te dice qué se hace y por qué.", giro: GIROS[8] },
 ];
 
 const STEPS = [
@@ -40,6 +58,16 @@ export default function Landing() {
   const [nombre, setNombre] = useState("");
   const [telefono, setTelefono] = useState("");
   const [giro, setGiro] = useState(GIROS[0]);
+  const [angulo, setAngulo] = useState(0);
+  const [pausa, setPausa] = useState(false);
+  const reducirMovimiento = useReducedMotion();
+
+  // Rota el titular cada 5 s; se detiene al pasar el cursor o si el usuario prefiere menos movimiento.
+  useEffect(() => {
+    if (reducirMovimiento || pausa) return;
+    const id = setInterval(() => setAngulo((i) => (i + 1) % ANGULOS.length), 5000);
+    return () => clearInterval(id);
+  }, [reducirMovimiento, pausa]);
   const [acepta, setAcepta] = useState(false);
   const [estado, setEstado] = useState<"idle" | "enviando" | "ok" | "error">("idle");
 
@@ -50,7 +78,7 @@ export default function Landing() {
       const r = await fetch("/api/notify-telegram", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "contact", source: "landing-v0", nombre, telefono, giro }),
+        body: JSON.stringify({ type: "contact", source: `landing-v0 | ${ANGULOS[angulo].q}`, nombre, telefono, giro }),
       });
       const data = await r.json().catch(() => ({}));
       if (!r.ok || data.ok === false) throw new Error("fallo");
@@ -88,12 +116,39 @@ export default function Landing() {
         <section className="grid gap-10 py-10 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2e384c]">Despacho contable en San Pedro Garza García</p>
-            <h1 className="font-heading mt-3 text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[#021f74] sm:text-[42px]">
-              ¿Compras autos a particulares y no sabes cómo registrarlos bien?
-            </h1>
-            <p className="mt-4 text-base leading-relaxed text-[#2e384c]">
-              Te ayudamos a ordenar tu contabilidad y tus obligaciones con el SAT. Revisamos contigo cómo manejas hoy las compras a particulares que no entregan factura. La primera revisión no tiene costo.
-            </p>
+            <div onMouseEnter={() => setPausa(true)} onMouseLeave={() => setPausa(false)} className="min-h-[250px] sm:min-h-[270px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={angulo}
+                  initial={reducirMovimiento ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={reducirMovimiento ? undefined : { opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h1 className="font-heading mt-3 text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[#021f74] sm:text-[42px]">
+                    {ANGULOS[angulo].q}
+                  </h1>
+                  <p className="mt-4 text-base leading-relaxed text-[#2e384c]">
+                    {ANGULOS[angulo].sub} La primera revisión no tiene costo.
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+              <div className="mt-4 flex gap-2" role="tablist" aria-label="Elegir pregunta">
+                {ANGULOS.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={`Pregunta ${i + 1}`}
+                    onClick={() => {
+                      setAngulo(i);
+                      setGiro(ANGULOS[i].giro);
+                    }}
+                    className="h-2 rounded-full transition-all"
+                    style={{ width: i === angulo ? 24 : 8, backgroundColor: i === angulo ? "#021f74" : "#c9d3ea" }}
+                  />
+                ))}
+              </div>
+            </div>
             <ul className="mt-6 space-y-2 text-[15px] text-[#2e384c]">
               <li>Atención directa de los socios, sin intermediarios.</li>
               <li>Convenio de confidencialidad antes de recibir tus documentos.</li>
