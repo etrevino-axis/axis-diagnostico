@@ -6,6 +6,45 @@ import { Label } from "@/components/ui/label";
 // v0 de revisión — landing alternativa al diagnóstico. No está en producción:
 // vive en la ruta /landing de la rama landing-lotes-v0. Los textos con
 // beneficio fiscal están pendientes de revisión del consejo de Axis.
+// Íconos de trazo (estilo Heroicons outline), como pide el kit del portal.
+const ICON_PATHS: Record<string, string[]> = {
+  check: ["M4.5 12.75l6 6 9-13.5"],
+  location_on: [
+    "M15 10.5a3 3 0 11-6 0 3 3 0 016 0z",
+    "M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z",
+  ],
+  groups: [
+    "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z",
+  ],
+  verified_user: [
+    "M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z",
+  ],
+  folder_open: [
+    "M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z",
+  ],
+};
+
+function Icon({ name, className }: { name: string; className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      {(ICON_PATHS[name] ?? []).map((d) => (
+        <path key={d} d={d} />
+      ))}
+    </svg>
+  );
+}
+
 const WHATSAPP_NUMBER = "528120349991"; // por confirmar: hay dos números en circulación
 const CALENDLY_URL = "https://calendly.com/etrevino-axisconsultoresmx/30min";
 
@@ -33,6 +72,31 @@ const ANGULOS = [
   { q: "¿Tienes contador, pero sientes que no te explica?", sub: "Una segunda opinión sin costo, con alguien que te dice qué se hace y por qué.", giro: GIROS[8] },
 ];
 
+const TRUST = [
+  { icon: "location_on", title: "En San Pedro Garza García", text: "Oficina en Fuentes del Valle." },
+  { icon: "groups", title: "Atención de los socios", text: "Hablas con quienes llevan tu caso." },
+  { icon: "verified_user", title: "Confidencialidad firmada", text: "Antes de recibir tus documentos." },
+  { icon: "folder_open", title: "Portal privado", text: "Tus archivos, en un solo lugar." },
+];
+
+const PERFILES = [
+  { title: "Lotes de autos", items: ["Registro de compras a particulares", "Obligaciones fiscales del lote", "Contabilidad mensual al corriente"] },
+  { title: "Arrendamiento", items: ["Declaraciones de tus rentas", "Facturación a tus inquilinos", "Orden de ingresos y deducciones"] },
+  { title: "Empresas y pymes", items: ["Contabilidad y estados financieros", "Nómina, IMSS y timbrado", "Reportes claros y CFO externo"] },
+  { title: "Personas físicas", items: ["Actividad empresarial, RESICO y honorarios", "Regularización de meses atrasados", "Declaración anual"] },
+];
+
+const SESION = [
+  { n: "1", title: "Entendemos tu operación", text: "Nos cuentas a qué te dedicas, cómo llevas hoy tus números y qué te preocupa." },
+  { n: "2", title: "Revisamos tu situación", text: "Vemos cómo registras ingresos, gastos y obligaciones, y dónde hay puntos por atender." },
+  { n: "3", title: "Te decimos qué sigue", text: "Si podemos ayudarte, recibes una propuesta por escrito. Si no te conviene, también te lo decimos." },
+];
+
+const SOCIOS = [
+  { nombre: "Eric Treviño", rol: "Socio", iniciales: "ET" },
+  { nombre: "Bernardo [apellido]", rol: "Socio", iniciales: "B" },
+];
+
 const STEPS = [
   { n: "01", title: "Primera llamada", text: "Platicamos de tu operación y te decimos con claridad si podemos ayudarte." },
   { n: "02", title: "Confidencialidad", text: "Firmamos un convenio de confidencialidad y abrimos un grupo de WhatsApp contigo." },
@@ -44,6 +108,9 @@ const FAQ = [
   { q: "¿La primera revisión tiene costo?", a: "No. Es una sesión de 20 a 30 minutos para conocer tu caso." },
   { q: "¿Quién va a atender mi caso?", a: "Eric Treviño y Bernardo, socios de Axis Consultores. Hablas con las personas que llevan tu contabilidad." },
   { q: "¿Cómo protegen mi información?", a: "Firmamos un convenio de confidencialidad antes de recibir tus documentos y los guardamos en un portal privado." },
+  { q: "¿Cuánto cuesta trabajar con ustedes?", a: "Depende de tu operación. Después de la sesión recibes una carta propuesta por escrito con alcance, costo y forma de pago." },
+  { q: "¿Qué necesito para empezar?", a: "Tus datos de contacto para la primera llamada. Más adelante te pediremos tu documentación fiscal y tu e.firma, siempre después de firmar la confidencialidad." },
+  { q: "¿Qué tan rápido me responden?", a: "Te contactamos por WhatsApp el mismo día, en horario de oficina." },
   { q: "¿Trabajan solo con lotes de autos?", a: "Atendemos también a personas físicas con actividad empresarial y a pymes de Monterrey y su área metropolitana." },
 ];
 
@@ -90,7 +157,7 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--color-background)", color: "#111" }}>
+    <div id="top" className="min-h-screen" style={{ backgroundColor: "var(--color-background)", color: "#111" }}>
       <div className="px-6 py-2 text-center text-xs font-semibold" style={{ backgroundColor: "#e8edf8", color: "#021f74" }}>
         Versión de revisión v0. Los textos con beneficio fiscal están pendientes de revisión.
       </div>
@@ -220,6 +287,58 @@ export default function Landing() {
           </form>
         </section>
 
+        <section className="py-4">
+          <div className="grid gap-4 rounded-[12px] border bg-white p-6 sm:grid-cols-2 lg:grid-cols-4" style={{ borderColor: "#e8edf8" }}>
+            {TRUST.map((t) => (
+              <div key={t.title} className="flex items-start gap-3">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: "#e8edf8" }}>
+                  <Icon name={t.icon} className="text-[19px] text-[#021f74]" />
+                </span>
+                <div>
+                  <p className="text-sm font-semibold text-[#021f74]">{t.title}</p>
+                  <p className="mt-0.5 text-sm text-[#2e384c]">{t.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="py-10">
+          <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Para quién trabajamos</h2>
+          <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Negocios y personas de Monterrey y su área metropolitana que quieren tener su contabilidad en orden y con alguien que les explique.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {PERFILES.map((p) => (
+              <div key={p.title} className="rounded-[12px] border bg-white p-5" style={{ borderColor: "#e8edf8" }}>
+                <p className="font-semibold text-[#021f74]">{p.title}</p>
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-[#2e384c]">
+                  {p.items.map((i) => (
+                    <li key={i} className="flex gap-2">
+                      <Icon name="check" className="mt-0.5 shrink-0 text-[16px] text-[#021f74]" />
+                      <span>{i}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="py-10">
+          <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Qué pasa en tu primera sesión</h2>
+          <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Dura de 20 a 30 minutos, no tiene costo y no te compromete a nada.</p>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {SESION.map((s) => (
+              <div key={s.n} className="flex gap-4 rounded-[12px] border bg-white p-5" style={{ borderColor: "#e8edf8" }}>
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: "#021f74" }}>{s.n}</span>
+                <div>
+                  <p className="font-semibold text-[#021f74]">{s.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-[#2e384c]">{s.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="py-10">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Cómo trabajamos</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -234,6 +353,34 @@ export default function Landing() {
         </section>
 
         <section className="py-10">
+          <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Quiénes somos</h2>
+          <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Axis Consultores es un despacho contable y fiscal en San Pedro Garza García. Trabajamos de forma consultiva: te explicamos qué hacemos y por qué.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {SOCIOS.map((p) => (
+              <div key={p.nombre} className="flex items-center gap-4 rounded-[12px] border bg-white p-5" style={{ borderColor: "#e8edf8" }}>
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full text-lg font-bold text-[#021f74]" style={{ backgroundColor: "#e8edf8" }}>{p.iniciales}</span>
+                <div>
+                  <p className="font-semibold text-[#021f74]">{p.nombre}</p>
+                  <p className="text-sm text-[#2e384c]">{p.rol}, Axis Consultores</p>
+                  <p className="mt-1 text-xs text-[#2e384c]">[Foto, formación y experiencia por completar]</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="py-10">
+          <div className="rounded-[12px] border bg-white p-7 sm:p-8" style={{ borderColor: "#e8edf8" }}>
+            <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Tu información, protegida</h2>
+            <ul className="mt-4 space-y-3 text-[15px] leading-relaxed text-[#2e384c]">
+              <li className="flex gap-3"><Icon name="check" className="mt-1 shrink-0 text-[16px] text-[#021f74]" /><span>Firmamos un convenio de confidencialidad antes de recibir tu documentación.</span></li>
+              <li className="flex gap-3"><Icon name="check" className="mt-1 shrink-0 text-[16px] text-[#021f74]" /><span>Tus archivos viven en un portal privado de acceso restringido, no en cadenas de correo ni en chats.</span></li>
+              <li className="flex gap-3"><Icon name="check" className="mt-1 shrink-0 text-[16px] text-[#021f74]" /><span>Solo pedimos tu e.firma cuando ya aceptaste la propuesta y vamos a trabajar tu contabilidad.</span></li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="py-10">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Preguntas frecuentes</h2>
           <div className="mt-5 divide-y rounded-[12px] border bg-white" style={{ borderColor: "#e8edf8" }}>
             {FAQ.map((f) => (
@@ -242,6 +389,23 @@ export default function Landing() {
                 <p className="mt-2 text-[15px] leading-relaxed text-[#2e384c]">{f.a}</p>
               </details>
             ))}
+          </div>
+        </section>
+
+        <section className="py-10">
+          <div className="rounded-[12px] p-8 text-center sm:p-10" style={{ backgroundColor: "#021f74" }}>
+            <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-white sm:text-[28px]">Platiquemos de tu caso</h2>
+            <p className="mx-auto mt-2 max-w-xl text-[15px] text-white/80">Una sesión de 20 a 30 minutos, sin costo y sin compromiso.</p>
+            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a href="#top" className="inline-flex h-11 items-center rounded-[8px] bg-white px-6 text-sm font-semibold text-[#021f74]">Dejar mis datos</a>
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                onClick={() => track("whatsapp_click", { fuente: "landing_v0_cta" })}
+                className="inline-flex h-11 items-center rounded-[8px] border border-white/60 px-6 text-sm font-semibold text-white"
+              >
+                Escribir por WhatsApp
+              </a>
+            </div>
           </div>
         </section>
 
