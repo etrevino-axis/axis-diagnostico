@@ -245,11 +245,36 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="py-6 text-center">
-          <p className="text-[15px] text-[#2e384c]">¿Prefieres explorar primero?</p>
-          <a href="/" className="mt-1 inline-block text-sm font-semibold text-[#021f74] underline">
-            Haz el diagnóstico gratuito de 2 minutos
-          </a>
+        <section className="py-10">
+          <div
+            className="flex flex-col gap-6 rounded-[12px] border bg-white p-7 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+            style={{ borderColor: "#e8edf8" }}
+          >
+            <div className="max-w-xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#2e384c]">Si prefieres empezar por tu cuenta</p>
+              <h2 className="font-heading mt-2 text-2xl font-bold tracking-[-0.015em] text-[#021f74]">
+                Conoce qué tan en orden está tu situación
+              </h2>
+              <p className="mt-2 text-[15px] leading-relaxed text-[#2e384c]">
+                Responde 6 preguntas sobre tu contabilidad y tus obligaciones con el SAT y recibe un resumen por área. Empiezas sin dar tus datos.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["6 preguntas", "2 minutos", "Sin costo"].map((c) => (
+                  <span key={c} className="rounded-full px-3 py-1 text-xs font-semibold" style={{ backgroundColor: "#e8edf8", color: "#021f74" }}>
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <a
+              href="/"
+              onClick={() => track("diagnostico_click", { fuente: "landing_v0" })}
+              className="inline-flex h-11 shrink-0 items-center justify-center rounded-[8px] border px-6 text-sm font-semibold text-[#021f74]"
+              style={{ borderColor: "#021f74", borderWidth: 1.5 }}
+            >
+              Hacer el diagnóstico
+            </a>
+          </div>
         </section>
       </main>
 
