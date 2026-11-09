@@ -348,12 +348,12 @@ export default function Landing() {
         </section>
 
         <section id="sesion" className="scroll-mt-24 py-10">
-          <div className="grid gap-6 md:grid-cols-[1fr_320px] md:items-end">
+          <div className="grid gap-6 md:grid-cols-[1fr_280px] md:items-center">
             <div>
               <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Qué pasa en tu primera sesión</h2>
               <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Dura de 20 a 30 minutos, no tiene costo y no te compromete a nada.</p>
             </div>
-            <img src={FOTOS.calculadora.src} alt={FOTOS.calculadora.alt} loading="lazy" className="hidden h-28 w-full rounded-[12px] object-cover md:block" />
+            <img src={FOTOS.calculadora.src} alt={FOTOS.calculadora.alt} loading="lazy" className="hidden aspect-[4/3] w-full rounded-[12px] object-cover object-center md:block" />
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {SESION.map((s) => (
