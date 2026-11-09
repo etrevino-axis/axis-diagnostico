@@ -164,21 +164,34 @@ export default function Landing() {
         Versión de revisión v0. Los textos con beneficio fiscal están pendientes de revisión.
       </div>
 
-      <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
-        <a href="/landing" className="flex items-center gap-3">
-          <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-white" style={{ border: "2px solid #e8edf8" }}>
-            <img src="/logoaxis.png" alt="" width={32} height={32} />
-          </span>
-          <span className="text-[15px] font-bold tracking-tight text-[#021f74]">Axis Consultores</span>
-        </a>
-        <a
-          href={`https://wa.me/${WHATSAPP_NUMBER}`}
-          onClick={() => track("whatsapp_click", { fuente: "landing_v0" })}
-          className="rounded-[8px] px-4 py-2 text-sm font-semibold text-white"
-          style={{ backgroundColor: "#021f74" }}
-        >
-          Escríbenos por WhatsApp
-        </a>
+      <header className="sticky top-0 z-30 border-b backdrop-blur" style={{ borderColor: "#e8edf8", backgroundColor: "rgba(248,249,252,0.92)" }}>
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3">
+          <a href="#top" className="flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-white" style={{ border: "2px solid #e8edf8" }}>
+              <img src="/logoaxis.png" alt="" width={32} height={32} />
+            </span>
+            <span className="text-[15px] font-bold tracking-tight text-[#021f74]">Axis Consultores</span>
+          </a>
+          <nav className="hidden items-center gap-6 text-sm font-medium text-[#2e384c] md:flex" aria-label="Principal">
+            <a href="#para-quien" className="hover:text-[#021f74]">Para quién</a>
+            <a href="#sesion" className="hover:text-[#021f74]">Primera sesión</a>
+            <a href="#como-trabajamos" className="hover:text-[#021f74]">Cómo trabajamos</a>
+            <a href="#faq" className="hover:text-[#021f74]">Preguntas</a>
+          </nav>
+          <div className="flex items-center gap-2">
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              onClick={() => track("whatsapp_click", { fuente: "landing_v0_header" })}
+              className="hidden rounded-[8px] border px-4 py-2 text-sm font-semibold text-[#021f74] sm:inline-block"
+              style={{ borderColor: "#021f74", borderWidth: 1.5 }}
+            >
+              WhatsApp
+            </a>
+            <a href="#form" className="rounded-[8px] px-4 py-2 text-sm font-semibold text-white" style={{ backgroundColor: "#021f74" }}>
+              Agendar sesión
+            </a>
+          </div>
+        </div>
       </header>
 
       <main className="mx-auto max-w-5xl px-6 pb-16">
@@ -225,7 +238,7 @@ export default function Landing() {
             </ul>
           </div>
 
-          <form onSubmit={enviar} className="rounded-[12px] border bg-white p-6 sm:p-7" style={{ borderColor: "#e8edf8" }}>
+          <form id="form" onSubmit={enviar} className="scroll-mt-24 rounded-[12px] border bg-white p-6 sm:p-7" style={{ borderColor: "#e8edf8" }}>
             {estado === "ok" ? (
               <div>
                 <h2 className="font-heading text-xl font-bold text-[#021f74]">Gracias, {nombre.split(" ")[0]}.</h2>
@@ -314,7 +327,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="py-10">
+        <section id="para-quien" className="scroll-mt-24 py-10">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Para quién trabajamos</h2>
           <p className="mt-2 max-w-2xl text-[15px] text-[#2e384c]">Negocios y personas de Monterrey y su área metropolitana que quieren tener su contabilidad en orden y con alguien que les explique.</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -334,7 +347,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="py-10">
+        <section id="sesion" className="scroll-mt-24 py-10">
           <div className="grid gap-6 md:grid-cols-[1fr_320px] md:items-end">
             <div>
               <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Qué pasa en tu primera sesión</h2>
@@ -355,7 +368,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="py-10">
+        <section id="como-trabajamos" className="scroll-mt-24 py-10">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Cómo trabajamos</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s) => (
@@ -382,7 +395,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="py-10">
+        <section id="faq" className="scroll-mt-24 py-10">
           <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Preguntas frecuentes</h2>
           <div className="mt-5 divide-y rounded-[12px] border bg-white" style={{ borderColor: "#e8edf8" }}>
             {FAQ.map((f) => (
@@ -444,9 +457,58 @@ export default function Landing() {
         </section>
       </main>
 
-      <footer className="border-t px-6 py-8 text-center text-sm text-[#2e384c]" style={{ borderColor: "#e8edf8" }}>
-        Axis Consultores · Fuentes del Valle, Sector 7, San Pedro Garza García, N.L.
-        <p className="mt-2 text-xs">Fotografías: Unsplash.</p>
+      <footer style={{ backgroundColor: "#021f74" }}>
+        <div className="mx-auto grid max-w-5xl gap-10 px-6 py-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-white">
+                <img src="/logoaxis.png" alt="" width={28} height={28} />
+              </span>
+              <span className="text-[15px] font-bold text-white">Axis Consultores</span>
+            </div>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/75">
+              Despacho contable y fiscal en San Pedro Garza García. Contabilidad en orden y alguien que te explica qué se hace y por qué.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">Navegación</p>
+            <ul className="mt-4 space-y-2 text-sm text-white/85">
+              <li><a href="#para-quien" className="hover:text-white">Para quién trabajamos</a></li>
+              <li><a href="#sesion" className="hover:text-white">Primera sesión</a></li>
+              <li><a href="#como-trabajamos" className="hover:text-white">Cómo trabajamos</a></li>
+              <li><a href="#faq" className="hover:text-white">Preguntas frecuentes</a></li>
+              <li><a href="/" className="hover:text-white">Diagnóstico gratuito</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">Contacto</p>
+            <ul className="mt-4 space-y-2 text-sm text-white/85">
+              <li>
+                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} onClick={() => track("whatsapp_click", { fuente: "landing_v0_footer" })} className="hover:text-white">
+                  WhatsApp
+                </a>
+              </li>
+              <li><a href="mailto:info@axisconsultoresmx.com" className="hover:text-white">info@axisconsultoresmx.com</a></li>
+              <li><a href={CALENDLY_URL} className="hover:text-white">Agendar sesión</a></li>
+              <li><a href="https://instagram.com/axisconsultores.mx" className="hover:text-white">Instagram</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">Ubicación</p>
+            <p className="mt-4 text-sm leading-relaxed text-white/85">
+              Fuentes del Valle, Sector 7
+              <br />
+              66224 San Pedro Garza García, N.L.
+            </p>
+            <p className="mt-3 text-sm text-white/60">Horario: [por confirmar]</p>
+          </div>
+        </div>
+        <div className="border-t" style={{ borderColor: "rgba(255,255,255,0.15)" }}>
+          <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+            <p>© 2026 Axis Consultores. Todos los derechos reservados.</p>
+            <p>Aviso de privacidad (pendiente de publicar) · Fotografías: Unsplash</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
