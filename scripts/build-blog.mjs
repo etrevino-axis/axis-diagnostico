@@ -47,6 +47,25 @@ renderer.link = (href, title, text) =>
   `<a href="${href}"${/^https?:/.test(href) ? ' rel="noopener" target="_blank"' : ""}>${text}</a>`;
 marked.use({ renderer });
 
+
+const U = "https://images.unsplash.com/";
+const FOTOS = [
+  ["photo-1761937841713-6b43e3f50efa", "Rascacielos de vidrio contra el cielo"],
+  ["photo-1760426392296-9abd7fc8cab0", "Edificio de vidrio de forma triangular"],
+  ["photo-1698490275678-518f3b591f0c", "Edificio alto con muchas ventanas"],
+  ["photo-1762890515866-3b1b34e13133", "Edificio de grandes ventanales con árboles"],
+  ["photo-1773665231158-d80e8a86f44d", "Rascacielos sobre edificios históricos"],
+  ["photo-1554469384-e58fac16e23a", "Edificio de oficinas visto desde abajo"],
+  ["photo-1512403754473-27835f7b9984", "Edificios de vidrio"],
+  ["photo-1481026469463-66327c86e544", "Edificio de vidrio bajo cielo azul"],
+  ["photo-1576731753569-3e93a228048c", "Esquina de un edificio de oficinas moderno"],
+  ["photo-1490351267196-b7a67e26e41b", "Torre de vidrio al amanecer"],
+  ["photo-1621831337128-35676ca30868", "Edificio de paredes de vidrio blanco y azul"],
+];
+const SLUGS = readdirSync(SRC).filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, "")).sort();
+const fotoDe = (slug) => FOTOS[Math.max(0, SLUGS.indexOf(slug)) % FOTOS.length];
+const thumb = (slug) => { const [id, alt] = fotoDe(slug); return `<img class="th" src="${U}${id}?auto=format&fit=crop&w=640&h=200&q=65" alt="${esc(alt)}" loading="lazy" width="640" height="200">`; };
+
 const CSS = `
 :root{--navy:#021f74;--ink:#111;--muted:#2e384c;--line:#e8edf8;--bg:#f8f9fc}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.7}
@@ -74,7 +93,9 @@ li{margin:6px 0}
 .cta h2{color:#fff;margin:0 0 8px}.cta p{margin:0 0 16px;opacity:.85}.cta .btn{background:#fff;color:var(--navy)!important;margin:4px}
 .cta .btn.o{background:transparent;color:#fff!important;border:1px solid rgba(255,255,255,.6)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;margin:24px 0}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;text-decoration:none;color:inherit;display:block}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:inherit;display:flex;flex-direction:column;overflow:hidden}
+.card .th{width:100%;height:30%;min-height:96px;max-height:120px;object-fit:cover;display:block;background:#e8edf8}
+.card .bd{padding:18px 20px 20px}
 .card h3{margin:6px 0 6px;font-size:18px;line-height:1.3}.card p{margin:0;font-size:14px;color:var(--muted)}
 footer{background:var(--navy);color:rgba(255,255,255,.8);padding:32px 0;font-size:14px}footer a{color:#fff}
 @media(max-width:640px){nav{display:none}}
@@ -136,7 +157,7 @@ for (const p of posts) {
 ${marked.parse(p.body)}
 <div class="cta"><h2>¿Quieres que revisemos tu caso?</h2><p>Una sesión de 20 a 30 minutos, sin costo y sin compromiso.</p>
 <a class="btn" data-cta="post-${p.slug}" href="/landing#form">Dejar mis datos</a><a class="btn o" data-cta="post-diag" href="/">Hacer el diagnóstico gratuito</a></div>
-<h2>Sigue leyendo</h2><div class="cards">${related.map((r) => `<a class="card" href="/blog/${r.slug}/"><div class="cat">${esc(r.category)}</div><h3>${esc(r.title)}</h3><p>${esc(r.description)}</p></a>`).join("")}</div>
+<h2>Sigue leyendo</h2><div class="cards">${related.map((r) => `<a class="card" href="/blog/${r.slug}/">${thumb(r.slug)}<div class="bd"><div class="cat">${esc(r.category)}</div><h3>${esc(r.title)}</h3><p>${esc(r.description)}</p></div></a>`).join("")}</div>
 </article></main>`;
   mkdirSync(join(DIST, "blog", p.slug), { recursive: true });
   writeFileSync(join(DIST, "blog", p.slug, "index.html"), shell({ title: `${p.title} | ${ORG}`, desc: p.description, path, jsonld, body }));
@@ -148,7 +169,7 @@ ${marked.parse(p.body)}
   const body = `<main><div class="wide">
 <div class="cat">Blog</div><h1>Contabilidad, impuestos y finanzas para tu negocio</h1>
 <p class="meta" style="max-width:680px">Guías claras sobre las NIF, el SAT, la nómina y las finanzas de una pyme en México, escritas por el equipo de ${ORG}.</p>
-${cats.map((c) => `<h2>${esc(c)}</h2><div class="cards">${posts.filter((p) => p.category === c).map((p) => `<a class="card" href="/blog/${p.slug}/"><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p></a>`).join("")}</div>`).join("")}
+${cats.map((c) => `<h2>${esc(c)}</h2><div class="cards">${posts.filter((p) => p.category === c).map((p) => `<a class="card" href="/blog/${p.slug}/">${thumb(p.slug)}<div class="bd"><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p></div></a>`).join("")}</div>`).join("")}
 </div></main>`;
   const jsonld = [{ "@context": "https://schema.org", "@type": "Blog", name: `Blog de ${ORG}`, url: `${SITE}/blog/`, inLanguage: "es-MX", publisher: org,
     blogPost: posts.map((p) => ({ "@type": "BlogPosting", headline: p.title, url: `${SITE}/blog/${p.slug}/`, datePublished: p.date })) }];

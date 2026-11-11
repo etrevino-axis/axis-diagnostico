@@ -1,0 +1,24 @@
+# Axis Consultores
+
+> Despacho contable y fiscal en San Pedro Garza García, Nuevo León, México. Contabilidad, cumplimiento fiscal, nómina y CFO externo para pymes y personas físicas con actividad empresarial. Atendemos Monterrey y su área metropolitana.
+
+## Servicios
+- [Inicio y contacto](https://diagnostico.axisconsultoresmx.com/landing): quiénes somos, cómo trabajamos y formulario de contacto.
+- [Diagnóstico gratuito](https://diagnostico.axisconsultoresmx.com/): cuestionario de 6 preguntas sobre la situación contable y fiscal.
+
+## Blog: guías de contabilidad, SAT y finanzas
+- [¿Qué son las NIF y en qué se diferencian de las NIIF?](https://diagnostico.axisconsultoresmx.com/blog/nif-que-son-diferencias-con-niif/): Las Normas de Información Financiera (NIF) son las reglas contables de México, emitidas por el CINIF. Te explicamos su estructura y cómo se distinguen de las NIIF o IFRS.
+- [Aguinaldo y PTU: fechas límite, cálculo y obligaciones del patrón](https://diagnostico.axisconsultoresmx.com/blog/aguinaldo-y-ptu-fechas-calculo-obligaciones/): Cuándo y cómo se paga el aguinaldo (antes del 20 de diciembre, mínimo 15 días) y la PTU (10% de la utilidad). Reglas básicas para pymes y personas físicas con empleados.
+- [CFDI 4.0: los errores más comunes al facturar y cómo evitarlos](https://diagnostico.axisconsultoresmx.com/blog/cfdi-4-0-errores-comunes-al-facturar/): Datos obligatorios del CFDI 4.0, errores que provocan facturas inválidas o rechazadas y cómo cancelarlas correctamente. Guía práctica para negocios y personas físicas.
+- [CFO externo: qué es y cuándo conviene a una pyme](https://diagnostico.axisconsultoresmx.com/blog/cuando-contratar-un-cfo-externo-pyme/): Qué hace un CFO externo (director de finanzas por horas o por proyecto), en qué se diferencia de un contador y señales de que tu pyme ya lo necesita.
+- [Cómo elegir un contador: 10 preguntas que debes hacerle antes de contratarlo](https://diagnostico.axisconsultoresmx.com/blog/como-elegir-contador-preguntas-clave/): Preguntas clave y señales de alerta para elegir un contador o despacho contable en México: experiencia, comunicación, alcance, confidencialidad y precio.
+- [e.firma y buzón tributario: qué son, para qué sirven y cómo cuidarlos](https://diagnostico.axisconsultoresmx.com/blog/e-firma-y-buzon-tributario-que-son/): La e.firma (antes FIEL) y el buzón tributario son dos herramientas obligatorias para cumplir con el SAT. Qué son, vigencia, usos y recomendaciones de seguridad.
+- [Estados financieros básicos: cómo leer el balance, el estado de resultados y el flujo de efectivo](https://diagnostico.axisconsultoresmx.com/blog/estados-financieros-basicos-nif-balance-resultados-flujo/): Qué son y para qué sirven los estados financieros según las NIF: estado de situación financiera, estado de resultado integral, flujo de efectivo y cambios en el capital.
+- [Los 8 postulados básicos de la contabilidad (NIF A-2) explicados](https://diagnostico.axisconsultoresmx.com/blog/postulados-basicos-nif-a-2-principios-contables/): Entidad económica, negocio en marcha, devengación contable y más. Conoce los postulados básicos de la NIF A-2, el piso de toda contabilidad en México.
+- [Nómina e IMSS: obligaciones básicas del patrón en una pyme](https://diagnostico.axisconsultoresmx.com/blog/nomina-imss-obligaciones-patron-pyme/): Qué debe hacer un patrón al contratar: alta en el IMSS, cuotas obrero-patronales, retención de ISR, timbrado de nómina y registros. Guía práctica para pymes en México.
+- [Persona física con actividad empresarial: impuestos, declaraciones y deducciones](https://diagnostico.axisconsultoresmx.com/blog/persona-fisica-con-actividad-empresarial-impuestos-declaraciones/): Qué impuestos paga una persona física con actividad empresarial en México, cuándo presenta pagos provisionales y declaración anual, y qué requisitos debe cumplir una deducción.
+- [RESICO para personas físicas: requisitos, tasas y obligaciones](https://diagnostico.axisconsultoresmx.com/blog/resico-personas-fisicas-requisitos-tasas-obligaciones/): Guía del Régimen Simplificado de Confianza (RESICO) para personas físicas: límite de ingresos de $3.5 millones, tasas de ISR de 1% a 2.5%, obligaciones y cuándo no conviene.
+
+## Datos de contacto
+- Dirección: Fuentes del Valle, Sector 7, 66224 San Pedro Garza García, N.L., México
+- Sitio: https://diagnostico.axisconsultoresmx.com
