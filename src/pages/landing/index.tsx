@@ -177,6 +177,7 @@ export default function Landing() {
             <a href="#sesion" className="hover:text-[#021f74]">Primera sesión</a>
             <a href="#como-trabajamos" className="hover:text-[#021f74]">Cómo trabajamos</a>
             <a href="#faq" className="hover:text-[#021f74]">Preguntas</a>
+            <a href="/blog/" className="hover:text-[#021f74]">Blog</a>
           </nav>
           <div className="flex items-center gap-2">
             <a
@@ -477,6 +478,7 @@ export default function Landing() {
               <li><a href="#sesion" className="hover:text-white">Primera sesión</a></li>
               <li><a href="#como-trabajamos" className="hover:text-white">Cómo trabajamos</a></li>
               <li><a href="#faq" className="hover:text-white">Preguntas frecuentes</a></li>
+              <li><a href="/blog/" className="hover:text-white">Blog</a></li>
               <li><a href="/" className="hover:text-white">Diagnóstico gratuito</a></li>
             </ul>
           </div>
