@@ -160,9 +160,8 @@ export default function Landing() {
 
   return (
     <div id="top" className="min-h-screen" style={{ backgroundColor: "var(--color-background)", color: "#111" }}>
-      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-6 py-2.5 text-center text-sm font-bold" style={{ backgroundColor: "#F6C967", color: "#021f74" }}>
-        <span className="rounded px-2 py-0.5 text-xs uppercase tracking-widest" style={{ backgroundColor: "#021f74", color: "#fff" }}>Versión de revisión v0</span>
-        <span>Los textos con beneficio fiscal están pendientes de revisión.</span>
+      <div className="px-6 py-2 text-center text-xs font-semibold" style={{ backgroundColor: "#e8edf8", color: "#021f74" }}>
+        Versión de revisión v0. Los textos con beneficio fiscal están pendientes de revisión.
       </div>
 
       <header className="sticky top-0 z-30 border-b backdrop-blur" style={{ borderColor: "#e8edf8", backgroundColor: "rgba(248,249,252,0.92)" }}>
