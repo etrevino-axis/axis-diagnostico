@@ -131,10 +131,20 @@ export default function Landing() {
   const [pausa, setPausa] = useState(false);
   const reducirMovimiento = useReducedMotion();
 
+  // Título y descripción propios de la landing (el HTML base es el del diagnóstico).
+  useEffect(() => {
+    const prev = document.title;
+    document.title = "Contabilidad y asesoría fiscal en San Pedro Garza García | Axis Consultores";
+    const meta = document.querySelector('meta[name="description"]');
+    const prevDesc = meta?.getAttribute("content") ?? null;
+    meta?.setAttribute("content", "Despacho contable y fiscal en Monterrey. Primera revisión sin costo, con atención directa de los socios. Lotes de autos, arrendamiento, pymes y personas físicas.");
+    return () => { document.title = prev; if (meta && prevDesc !== null) meta.setAttribute("content", prevDesc); };
+  }, []);
+
   // Rota el titular cada 3.5 s; se detiene al pasar el cursor o si el usuario prefiere menos movimiento.
   useEffect(() => {
     if (reducirMovimiento || pausa) return;
-    const id = setInterval(() => setAngulo((i) => (i + 1) % ANGULOS.length), 5000);
+    const id = setInterval(() => setAngulo((i) => (i + 1) % ANGULOS.length), 3500);
     return () => clearInterval(id);
   }, [reducirMovimiento, pausa]);
   const [acepta, setAcepta] = useState(false);
