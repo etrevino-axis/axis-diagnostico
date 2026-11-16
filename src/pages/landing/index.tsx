@@ -108,7 +108,7 @@ const STEPS = [
 
 const FAQ = [
   { q: "¿La primera revisión tiene costo?", a: "No. Es una sesión de 20 a 30 minutos para conocer tu caso." },
-  { q: "¿Quién va a atender mi caso?", a: "Eric Treviño y Bernardo, socios de Axis Consultores. Hablas con las personas que llevan tu contabilidad." },
+  { q: "¿Quién va a atender mi caso?", a: "Los socios de Axis Consultores. Hablas con las personas que llevan tu contabilidad." },
   { q: "¿Cómo protegen mi información?", a: "Firmamos un convenio de confidencialidad antes de recibir tus documentos y los guardamos en un portal privado." },
   { q: "¿Cuánto cuesta trabajar con ustedes?", a: "Depende de tu operación. Después de la sesión recibes una carta propuesta por escrito con alcance, costo y forma de pago." },
   { q: "¿Qué necesito para empezar?", a: "Tus datos de contacto para la primera llamada. Más adelante te pediremos tu documentación fiscal y tu e.firma, siempre después de firmar la confidencialidad." },
@@ -403,22 +403,6 @@ export default function Landing() {
             </ul>
            </div>
            <img src={FOTOS.escritorio.src} alt={FOTOS.escritorio.alt} loading="lazy" className="h-48 w-full object-cover md:h-full" />
-          </div>
-        </section>
-
-        <section id="equipo" className="scroll-mt-24 py-10">
-          <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Quién te atiende</h2>
-          <p className="mt-2 text-[15px] leading-relaxed text-[#2e384c]">Hablas directamente con los socios de Axis Consultores, las personas que llevan tu contabilidad.</p>
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            {[{ nombre: "Eric Treviño", rol: "Socio, Axis Consultores" }, { nombre: "Bernardo", rol: "Socio, Axis Consultores" }].map((p) => (
-              <div key={p.nombre} className="flex items-center gap-4 rounded-[12px] border bg-white p-5" style={{ borderColor: "#e8edf8" }}>
-                <div aria-hidden="true" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#021f74] font-heading text-xl font-bold text-white">{p.nombre.charAt(0)}</div>
-                <div>
-                  <p className="font-semibold text-[#021f74]">{p.nombre}</p>
-                  <p className="text-[14px] text-[#2e384c]">{p.rol}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
