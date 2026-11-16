@@ -8,7 +8,7 @@ import { marked } from "marked";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
 const SRC = join(ROOT, "content", "blog");
-const SITE = (process.env.SITE_URL || "https://diagnostico.axisconsultoresmx.com").replace(/\/$/, "");
+const SITE = (process.env.SITE_URL || "https://www.axisconsultoresmx.com").replace(/\/$/, "");
 const ORG = "Axis Consultores";
 const GTM = "GTM-M7BHL7HF";
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

@@ -31,4 +31,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://diagnostico.axisconsultoresmx.com/sitemap.xml
+Sitemap: https://www.axisconsultoresmx.com/sitemap.xml

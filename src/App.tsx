@@ -6,7 +6,7 @@ import NotFound from "./pages/not-found";
 import { ScrollToTop } from "./components/scroll-to-top";
 
 // Una sola pantalla: el diagnóstico financiero en `/`. Público, sin auth —
-// esta landing de campaña vive en diagnostico.axisconsultoresmx.com y es
+// esta landing de campaña vive en www.axisconsultoresmx.com y es
 // el destino de los anuncios de Google/LinkedIn/Meta.
 const App = () => (
   <BrowserRouter>
