@@ -45,7 +45,7 @@ function Icon({ name, className }: { name: string; className?: string }) {
   );
 }
 
-const WHATSAPP_NUMBER = "528120349991"; // por confirmar: hay dos números en circulación
+const WHATSAPP_NUMBER = "528120349991"; // oficial: 81 2034 9991 (confirmado por Eric)
 const CALENDLY_URL = "https://calendly.com/etrevino-axisconsultoresmx/30min";
 
 const GIROS = [
@@ -403,6 +403,22 @@ export default function Landing() {
             </ul>
            </div>
            <img src={FOTOS.escritorio.src} alt={FOTOS.escritorio.alt} loading="lazy" className="h-48 w-full object-cover md:h-full" />
+          </div>
+        </section>
+
+        <section id="equipo" className="scroll-mt-24 py-10">
+          <h2 className="font-heading text-2xl font-bold tracking-[-0.015em] text-[#021f74]">Quién te atiende</h2>
+          <p className="mt-2 text-[15px] leading-relaxed text-[#2e384c]">Hablas directamente con los socios de Axis Consultores, las personas que llevan tu contabilidad.</p>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            {[{ nombre: "Eric Treviño", rol: "Socio, Axis Consultores" }, { nombre: "Bernardo", rol: "Socio, Axis Consultores" }].map((p) => (
+              <div key={p.nombre} className="flex items-center gap-4 rounded-[12px] border bg-white p-5" style={{ borderColor: "#e8edf8" }}>
+                <div aria-hidden="true" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#021f74] font-heading text-xl font-bold text-white">{p.nombre.charAt(0)}</div>
+                <div>
+                  <p className="font-semibold text-[#021f74]">{p.nombre}</p>
+                  <p className="text-[14px] text-[#2e384c]">{p.rol}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
