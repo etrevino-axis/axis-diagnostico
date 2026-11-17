@@ -457,7 +457,7 @@ export default function Landing() {
               </div>
             </div>
             <a
-              href="/"
+              href="/diagnostico"
               onClick={() => track("diagnostico_click", { fuente: "landing_v0" })}
               className="inline-flex h-11 shrink-0 items-center justify-center rounded-[8px] border px-6 text-sm font-semibold text-[#021f74]"
               style={{ borderColor: "#021f74", borderWidth: 1.5 }}
@@ -489,7 +489,7 @@ export default function Landing() {
               <li><a href="#como-trabajamos" className="hover:text-white">Cómo trabajamos</a></li>
               <li><a href="#faq" className="hover:text-white">Preguntas frecuentes</a></li>
               <li><a href="/blog/" className="hover:text-white">Blog</a></li>
-              <li><a href="/" className="hover:text-white">Diagnóstico gratuito</a></li>
+              <li><a href="/diagnostico" className="hover:text-white">Diagnóstico gratuito</a></li>
             </ul>
           </div>
           <div>

@@ -119,13 +119,13 @@ ${jsonld.map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</sc
 </head><body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="top"><div class="wide">
-<a class="brand" href="/landing"><span class="logo"><img src="/logoaxis.png" alt="" width="30" height="30"></span>${ORG}</a>
-<div style="display:flex;align-items:center"><nav><a href="/landing">Inicio</a><a href="/blog/">Blog</a><a href="/">Diagnóstico gratuito</a></nav><a class="btn" data-cta="header" href="/landing#form">Agendar sesión</a></div>
+<a class="brand" href="/"><span class="logo"><img src="/logoaxis.png" alt="" width="30" height="30"></span>${ORG}</a>
+<div style="display:flex;align-items:center"><nav><a href="/">Inicio</a><a href="/blog/">Blog</a><a href="/diagnostico">Diagnóstico gratuito</a></nav><a class="btn" data-cta="header" href="/#form">Agendar sesión</a></div>
 </div></header>
 ${body}
 <footer><div class="wide">
 <p><strong>${ORG}</strong> · Fuentes del Valle, Sector 7, 66224 San Pedro Garza García, N.L.</p>
-<p><a href="/landing">Inicio</a> · <a href="/blog/">Blog</a> · <a href="/">Diagnóstico gratuito</a></p>
+<p><a href="/">Inicio</a> · <a href="/blog/">Blog</a> · <a href="/diagnostico">Diagnóstico gratuito</a></p>
 <p style="opacity:.7">© 2026 ${ORG}. La información de este sitio es de carácter general y no sustituye la asesoría profesional.</p>
 </div></footer>
 <script>document.querySelectorAll('[data-cta]').forEach(function(a){a.addEventListener('click',function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'blog_cta_click',cta:a.getAttribute('data-cta'),page:location.pathname});});});</script>
@@ -143,20 +143,20 @@ for (const p of posts) {
     { "@context": "https://schema.org", "@type": "Article", headline: p.title, description: p.description, datePublished: p.date, dateModified: p.date,
       inLanguage: "es-MX", mainEntityOfPage: `${SITE}${path}`, author: org, publisher: org, keywords: p.keywords },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/landing` },
+      { "@type": "ListItem", position: 1, name: "Inicio", item: `${SITE}/` },
       { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE}/blog/` },
       { "@type": "ListItem", position: 3, name: p.title, item: `${SITE}${path}` } ] },
   ];
   if (p.faqs.length)
     jsonld.push({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: p.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) });
   const body = `<main><article class="wrap">
-<div class="crumbs"><a href="/landing">Inicio</a> › <a href="/blog/">Blog</a> › ${esc(p.category)}</div>
+<div class="crumbs"><a href="/">Inicio</a> › <a href="/blog/">Blog</a> › ${esc(p.category)}</div>
 <div class="cat">${esc(p.category)}</div><h1>${esc(p.title)}</h1>
 <div class="meta">Por Equipo ${ORG} · Actualizado el ${fechaLarga(p.date)} · ${p.minutes} min de lectura</div>
 <p class="note">Información de carácter general, elaborada con base en la normativa vigente a la fecha de actualización. No sustituye la asesoría de un contador para tu caso.</p>
 ${marked.parse(p.body)}
 <div class="cta"><h2>¿Quieres que revisemos tu caso?</h2><p>Una sesión de 20 a 30 minutos, sin costo y sin compromiso.</p>
-<a class="btn" data-cta="post-${p.slug}" href="/landing#form">Dejar mis datos</a><a class="btn o" data-cta="post-diag" href="/">Hacer el diagnóstico gratuito</a></div>
+<a class="btn" data-cta="post-${p.slug}" href="/#form">Dejar mis datos</a><a class="btn o" data-cta="post-diag" href="/diagnostico">Hacer el diagnóstico gratuito</a></div>
 <h2>Sigue leyendo</h2><div class="cards">${related.map((r) => `<a class="card" href="/blog/${r.slug}/">${thumb(r.slug)}<div class="bd"><div class="cat">${esc(r.category)}</div><h3>${esc(r.title)}</h3><p>${esc(r.description)}</p></div></a>`).join("")}</div>
 </article></main>`;
   mkdirSync(join(DIST, "blog", p.slug), { recursive: true });
@@ -179,14 +179,14 @@ ${cats.map((c) => `<h2>${esc(c)}</h2><div class="cards">${posts.filter((p) => p.
 }
 
 // sitemap y llms.txt
-const urls = [["/", posts[0]?.date], ["/landing", posts[0]?.date], ["/blog/", posts[0]?.date], ...posts.map((p) => [`/blog/${p.slug}/`, p.date])];
+const urls = [["/", posts[0]?.date], ["/diagnostico", posts[0]?.date], ["/blog/", posts[0]?.date], ...posts.map((p) => [`/blog/${p.slug}/`, p.date])];
 writeFileSync(join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([u, d]) => `<url><loc>${SITE}${u}</loc><lastmod>${d}</lastmod></url>`).join("\n")}\n</urlset>\n`);
 writeFileSync(join(DIST, "llms.txt"), `# ${ORG}
 
 > Despacho contable y fiscal en San Pedro Garza García, Nuevo León, México. Contabilidad, cumplimiento fiscal, nómina y CFO externo para pymes y personas físicas con actividad empresarial. Atendemos Monterrey y su área metropolitana.
 
 ## Servicios
-- [Inicio y contacto](${SITE}/landing): quiénes somos, cómo trabajamos y formulario de contacto.
+- [Inicio y contacto](${SITE}/): quiénes somos, cómo trabajamos y formulario de contacto.
 - [Diagnóstico gratuito](${SITE}/): cuestionario de 6 preguntas sobre la situación contable y fiscal.
 
 ## Blog: guías de contabilidad, SAT y finanzas
