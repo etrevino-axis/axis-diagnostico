@@ -292,7 +292,7 @@ export default function Landing() {
                   </div>
                   <label className="flex items-start gap-2 text-xs text-[#2e384c]">
                     <input type="checkbox" required checked={acepta} onChange={(e) => setAcepta(e.target.checked)} className="mt-0.5" />
-                    <span>Acepto que Axis Consultores use mis datos para contactarme. Aviso de privacidad (pendiente de publicar).</span>
+                    <span>Acepto que Axis Consultores use mis datos para contactarme.</span>
                   </label>
                 </div>
                 {estado === "error" && (
@@ -512,13 +512,13 @@ export default function Landing() {
               <br />
               66224 San Pedro Garza García, N.L.
             </p>
-            <p className="mt-3 text-sm text-white/60">Horario: [por confirmar]</p>
+            <p className="mt-3 text-sm text-white/60">Horario: lunes a viernes de 8:00 a 19:00 · sábados de 10:00 a 17:00</p>
           </div>
         </div>
         <div className="border-t" style={{ borderColor: "rgba(255,255,255,0.15)" }}>
           <div className="mx-auto flex max-w-5xl flex-col gap-2 px-6 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
             <p>© 2026 Axis Consultores. Todos los derechos reservados.</p>
-            <p>Aviso de privacidad (pendiente de publicar) · Fotografías: Unsplash</p>
+            <p>Fotografías: Unsplash</p>
           </div>
         </div>
       </footer>
