@@ -1,11 +1,13 @@
 export const config = { runtime: "nodejs" };
 
 interface NotifyPayload {
-  type?: "lead" | "profile";
+  type?: "lead" | "profile" | "contact";
+  source?: string;
+  giro?: string;
   nombre: string;
-  empresa: string;
+  empresa?: string;
   telefono?: string;
-  email: string;
+  email?: string;
   scorePercent?: number;
   tierStamp?: string;
   puntoDebil?: string;
@@ -37,7 +39,8 @@ export default async function handler(req: any, res: any) {
     return;
   }
 
-  const text = body.type === "profile" ? buildProfileMessage(body) : buildLeadMessage(body);
+  const text =
+    body.type === "profile" ? buildProfileMessage(body) : body.type === "contact" ? buildContactMessage(body) : buildLeadMessage(body);
 
   try {
     const tgResponse = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
@@ -94,4 +97,14 @@ function buildProfileMessage(body: NotifyPayload): string {
 function escapeMd(value: string | undefined): string {
   if (!value) return "—";
   return value.replace(/[_*[\]()~`>#+\-=|{}.!]/g, "\\$&");
+}
+
+function buildContactMessage(body: NotifyPayload): string {
+  return (
+    `🆕 *Nuevo contacto desde la landing*\n\n` +
+    `👤 *Nombre:* ${escapeMd(body.nombre)}\n` +
+    `📱 *WhatsApp:* ${escapeMd(body.telefono)}\n` +
+    `🏢 *Giro:* ${escapeMd(body.giro)}\n` +
+    `📍 *Fuente:* ${escapeMd(body.source)}`
+  );
 }
