@@ -170,10 +170,6 @@ export default function Landing() {
 
   return (
     <div id="top" className="min-h-screen" style={{ backgroundColor: "var(--color-background)", color: "#111" }}>
-      <div className="px-6 py-2 text-center text-xs font-semibold" style={{ backgroundColor: "#e8edf8", color: "#021f74" }}>
-        Versión de revisión v0. Los textos con beneficio fiscal están pendientes de revisión.
-      </div>
-
       <header className="sticky top-0 z-30 border-b backdrop-blur" style={{ borderColor: "#e8edf8", backgroundColor: "rgba(248,249,252,0.92)" }}>
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3">
           <a href="#top" className="flex items-center gap-3">
